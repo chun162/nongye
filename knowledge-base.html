@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人知识库 - 农业科技发展有限公司</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F6F2;
+      --bg-white: #FFFFFF;
+      --primary: #1E6B5E;
+      --primary-light: #2D8A6B;
+      --dark: #1A2E1A;
+      --muted: #5A6B5A;
+      --accent: #D4A574;
+      --shadow: 0 4px 24px rgba(30, 107, 94, 0.08);
+      --shadow-lg: 0 8px 32px rgba(30, 107, 94, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans SC", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .viewport {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+    .canvas {
+      width: 1440px;
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header {
+      width: 1440px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .logo { font-size: 20px; font-weight: 400; color: var(--dark); }
+    .nav { display: flex; gap: 40px; }
+    .nav a { font-size: 15px; color: var(--muted); transition: color .2s; }
+    .nav a:hover, .nav a.active { color: var(--dark); }
+    .header-cta {
+      height: 41px;
+      padding: 0 24px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .header-cta:hover { opacity: .9; }
+
+    /* Hero */
+    .kb-hero {
+      width: 1440px;
+      padding: 80px 120px 60px;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      background: linear-gradient(135deg, #F0F7F5 0%, var(--bg) 100%);
+    }
+    .kb-hero-content { flex: 1; }
+    .kb-hero-kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .kb-hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .kb-hero-desc {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .kb-hero-actions { display: flex; gap: 16px; }
+    .btn-primary {
+      height: 50px;
+      padding: 0 32px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-secondary {
+      height: 50px;
+      padding: 0 32px;
+      background: #fff;
+      color: var(--primary);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid var(--primary);
+      transition: background .2s;
+    }
+    .btn-secondary:hover { background: rgba(30, 107, 94, 0.04); }
+    .kb-hero-visual {
+      width: 400px;
+      height: 300px;
+      background: linear-gradient(135deg, var(--primary), #0D4A3E);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .kb-hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+    }
+    .kb-visual-inner {
+      text-align: center;
+      color: #fff;
+      z-index: 1;
+    }
+    .kb-visual-icon { font-size: 48px; margin-bottom: 12px; }
+    .kb-visual-text { font-size: 20px; font-weight: 600; opacity: 0.9; }
+
+    /* Features */
+    .kb-features {
+      width: 1440px;
+      padding: 80px 120px;
+      background: var(--bg-white);
+    }
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--bg);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(30, 107, 94, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Documents */
+    .kb-docs {
+      width: 1440px;
+      padding: 80px 120px;
+    }
+    .docs-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+    .doc-search {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .doc-search input {
+      width: 280px;
+      height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(90, 107, 90, 0.2);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-family: inherit;
+      background: #fff;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .doc-search input:focus { border-color: var(--primary); }
+    .doc-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .doc-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .doc-stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .doc-stat-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .doc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .doc-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border: 1px solid rgba(90, 107, 90, 0.08);
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .doc-card:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow);
+    }
+    .doc-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(30, 107, 94, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .doc-info { flex: 1; }
+    .doc-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .doc-meta {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      gap: 16px;
+    }
+    .doc-category {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      background: rgba(30, 107, 94, 0.06);
+      color: var(--primary);
+    }
+    .doc-arrow {
+      font-size: 18px;
+      color: var(--muted);
+      transition: transform .2s;
+    }
+    .doc-card:hover .doc-arrow { transform: translateX(4px); color: var(--primary); }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+    .empty-state-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-state h3 { font-size: 18px; margin-bottom: 8px; color: var(--dark); }
+    .empty-state p { font-size: 14px; line-height: 1.6; }
+
+    /* Quick Actions */
+    .kb-actions {
+      width: 1440px;
+      padding: 80px 120px;
+      background: var(--bg-white);
+      display: flex;
+      gap: 24px;
+    }
+    .action-card {
+      flex: 1;
+      padding: 36px 32px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary), #0D4A3E);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .action-card.secondary {
+      background: var(--bg);
+      color: var(--dark);
+      border: 1px solid rgba(90, 107, 90, 0.15);
+    }
+    .action-card h3 { font-size: 20px; font-weight: 600; }
+    .action-card p { font-size: 14px; opacity: 0.9; line-height: 1.6; }
+    .action-btn {
+      align-self: flex-start;
+      margin-top: 8px;
+      height: 44px;
+      padding: 0 24px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      transition: transform .2s;
+    }
+    .action-card:not(.secondary) .action-btn {
+      background: #fff;
+      color: var(--primary);
+    }
+    .action-card.secondary .action-btn {
+      background: var(--primary);
+      color: #fff;
+    }
+    .action-btn:hover { transform: translateY(-2px); }
+
+    /* Footer */
+    .footer {
+      width: 1440px;
+      padding: 60px 120px;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-left { display: flex; flex-direction: column; gap: 8px; }
+    .footer-brand { font-size: 20px; font-weight: 600; }
+    .footer-tagline { font-size: 14px; color: rgba(255,255,255,.8); }
+    .footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+    .footer-links a { font-size: 14px; color: #fff; transition: opacity .2s; }
+    .footer-links a:hover { opacity: .8; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,.7); width: 100%; text-align: center; margin-top: 8px; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 700px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 4px 8px;
+    }
+    .modal h2 { font-size: 24px; margin-bottom: 16px; color: var(--dark); }
+    .modal-meta { display: flex; gap: 16px; margin-bottom: 20px; font-size: 13px; color: var(--muted); }
+    .modal-content {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--dark);
+    }
+    .modal-content h1, .modal-content h2, .modal-content h3 { margin: 20px 0 12px; }
+    .modal-content p { margin-bottom: 12px; }
+    .modal-content ul, .modal-content ol { margin-bottom: 12px; padding-left: 24px; }
+    .modal-content li { margin-bottom: 4px; }
+    .modal-content code {
+      background: rgba(30, 107, 94, 0.06);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+    }
+    .modal-content pre {
+      background: #1A2E1A;
+      color: #D4A574;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+    .modal-content blockquote {
+      border-left: 3px solid var(--primary-light);
+      padding-left: 16px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1440px) {
+      .canvas { width: 100%; }
+      .header, .kb-hero, .kb-features, .kb-docs, .kb-actions, .footer { width: 100%; padding-left: 60px; padding-right: 60px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .kb-hero { flex-direction: column; text-align: center; }
+      .kb-hero-actions { justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .header, .kb-hero, .kb-features, .kb-docs, .kb-actions, .footer { padding-left: 24px; padding-right: 24px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .kb-hero-title { font-size: 32px; }
+      .kb-hero-visual { width: 100%; height: 200px; }
+      .footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+      .kb-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="viewport">
+    <div class="canvas">
+      <header class="header">
+        <a href="index.html" class="logo">农业科技发展有限公司</a>
+        <nav class="nav">
+          <a href="index.html">首页</a>
+          <a href="index.html#business">核心品种</a>
+          <a href="digital-twin.html">数字孪生</a>
+          <a href="dashboard.html">监控看板</a>
+          <a href="knowledge-base.html" class="active">知识库</a>
+        </nav>
+        <a href="index.html#contact" class="header-cta">联系我们</a>
+      </header>
+
+      <section class="kb-hero">
+        <div class="kb-hero-content">
+          <div class="kb-hero-kicker">AI 驱动的个人知识管理</div>
+          <h1 class="kb-hero-title">构建你的智慧知识体系</h1>
+          <p class="kb-hero-desc">
+            基于 CodeBuddy Agent SDK 构建的个人知识库系统。管理你的知识文档，
+            通过 AI 对话智能检索与利用知识。<br><span style="color:#1E6B5E;font-weight:600;">● 应用运行中: localhost:5173</span>
+          </p>
+          <div class="kb-hero-actions">
+            <button class="btn-primary" onclick="launchFullApp()">启动完整应用</button>
+            <a href="index.html" class="btn-secondary">返回官网首页</a>
+          </div>
+        </div>
+        <div class="kb-hero-visual">
+          <div class="kb-visual-inner">
+            <div class="kb-visual-icon">🧠</div>
+            <div class="kb-visual-text">知识库 AI Agent</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kb-features">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">六大能力，打造属于你自己的智能知识管理系统</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>知识库管理</h3>
+            <p>创建、编辑、删除知识文档，支持分类和标签组织，Markdown 格式自由书写</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>智能搜索</h3>
+            <p>全文搜索文档标题、内容和标签，快速定位所需知识</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>知识对话</h3>
+            <p>AI 自动检索知识库文档，基于你的知识库回答问题，引用来源</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>流式响应</h3>
+            <p>实时显示 AI 回复内容，毫秒级响应，对话体验流畅自然</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h3>工具调用</h3>
+            <p>可视化展示 Agent 工具使用过程，文件操作、代码执行一应俱全</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>自定义 Agent</h3>
+            <p>创建和管理多个 Agent 配置，自定义系统提示词和工作模式</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="kb-docs">
+        <div class="docs-header">
+          <div>
+            <h2 class="section-title">知识文档</h2>
+            <p class="section-subtitle" style="margin-bottom:0;">浏览和管理你的知识资产</p>
+          </div>
+          <div class="doc-search">
+            <input type="text" id="docSearch" placeholder="搜索文档..." oninput="filterDocs()">
+          </div>
+        </div>
+        <div class="doc-stats">
+          <div class="doc-stat">
+            <span class="doc-stat-num" id="docCount">1</span>
+            <span class="doc-stat-label">文档总数</span>
+          </div>
+          <div class="doc-stat">
+            <span class="doc-stat-num" id="catCount">1</span>
+            <span class="doc-stat-label">分类数</span>
+          </div>
+          <div class="doc-stat">
+            <span class="doc-stat-num">Markdown</span>
+            <span class="doc-stat-label">文档格式</span>
+          </div>
+        </div>
+        <div class="doc-list" id="docList">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <section class="kb-actions">
+        <div class="action-card">
+          <h3>启动完整知识库</h3>
+          <p>打开带有 AI 对话、流式响应、工具调用的完整知识库应用。<br><span style="color:#87A878;font-weight:600;">● 应用已在运行中</span></p>
+          <button class="action-btn" onclick="launchFullApp()">启动应用</button>
+        </div>
+        <div class="action-card secondary">
+          <h3>添加新文档</h3>
+          <p>将知识文档放入 knowledge-base 目录，支持 Markdown 格式，自动同步到知识库中。</p>
+          <button class="action-btn" onclick="openKnowledgeDir()">打开知识库目录</button>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-left">
+          <div class="footer-brand">农业科技发展有限公司</div>
+          <div class="footer-tagline">以科技赋能道地药材种植，推动芍药、百合、黄精产业化与可持续发展</div>
+        </div>
+        <div class="footer-links" style="flex-wrap:wrap;justify-content:center;gap:12px 24px;">
+          <a href="index.html">首页</a>
+          <a href="shaoyao.html">芍药管理</a>
+          <a href="shaoyao-variety.html">品种选型</a>
+          <a href="shaoyao-planning.html">种植规划</a>
+          <a href="shaoyao-planning-4yr.html">4年苗方案</a>
+          <a href="shaoyao-tourism.html">旅游商业</a>
+          <a href="baihe.html">百合专题</a>
+          <a href="huangjing.html">黄精专题</a>
+          <a href="digital-twin.html">数字孪生</a>
+          <a href="dashboard.html">监控面板</a>
+          <a href="knowledge-base.html">知识库</a>
+        </div>
+        <div class="footer-copy">2026 农业科技发展有限公司 版权所有</div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Document Modal -->
+  <div class="modal-overlay" id="docModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Knowledge base documents
+    const documents = [
+      {
+        id: 1,
+        title: '个人知识库使用指南',
+        category: '使用指南',
+        tags: ['教程', '入门'],
+        createdAt: '2026-07-04',
+        updatedAt: '2026-07-04',
+        content: `# 个人知识库使用指南
+
+## 欢迎使用个人知识库
+
+这是一个基于 AI Agent 的个人知识库系统。你可以在这里存储和管理你的知识文档，然后通过与 AI 对话来检索和利用这些知识。
+
+## 核心功能
+
+### 1. 知识库管理
+- 点击侧边栏的「知识库管理」按钮进入管理页面
+- 可以创建、编辑、删除知识文档
+- 支持按分类和标签组织文档
+- 支持全文搜索
+
+### 2. 与知识对话
+- 在聊天页面向 AI 提问
+- AI 会自动检索知识库中的相关文档
+- 回答会引用知识来源
+
+### 3. Agent 能力
+- AI 可以读取知识库中的 Markdown 文件
+- 支持文件操作、代码执行等工具
+- 可自定义 Agent 的系统提示词
+
+## 文档格式
+
+知识库文档支持 Markdown 格式，建议包含：
+- 清晰的标题
+- 结构化的内容（使用标题、列表、代码块等）
+- 适当的标签便于检索
+
+## 最佳实践
+
+1. **分类清晰**：为文档设置合适的分类，便于管理
+2. **标签丰富**：添加多个相关标签，提高搜索命中率
+3. **内容结构化**：使用 Markdown 格式组织内容
+4. **定期更新**：保持知识的时效性`
+      }
+    ];
+
+    function renderDocs(docs) {
+      const container = document.getElementById('docList');
+      document.getElementById('docCount').textContent = docs.length;
+      const categories = new Set(docs.map(d => d.category));
+      document.getElementById('catCount').textContent = categories.size;
+
+      if (docs.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📭</div>
+            <h3>暂无文档</h3>
+            <p>使用「启动完整应用」来添加文档，或将 Markdown 文件放入 knowledge-base 目录</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = docs.map(doc => `
+        <div class="doc-card" onclick="openDoc(${doc.id})">
+          <div class="doc-icon">📄</div>
+          <div class="doc-info">
+            <div class="doc-title">${escapeHtml(doc.title)}</div>
+            <div class="doc-meta">
+              <span>${doc.createdAt}</span>
+              <span>${doc.tags.join(' · ')}</span>
+            </div>
+          </div>
+          <span class="doc-category">${escapeHtml(doc.category)}</span>
+          <span class="doc-arrow">→</span>
+        </div>
+      `).join('');
+    }
+
+    function filterDocs() {
+      const query = document.getElementById('docSearch').value.toLowerCase();
+      const filtered = documents.filter(doc =>
+        doc.title.toLowerCase().includes(query) ||
+        doc.category.toLowerCase().includes(query) ||
+        doc.tags.some(t => t.toLowerCase().includes(query)) ||
+        doc.content.toLowerCase().includes(query)
+      );
+      renderDocs(filtered);
+    }
+
+    function openDoc(id) {
+      const doc = documents.find(d => d.id === id);
+      if (!doc) return;
+
+      const modal = document.getElementById('docModal');
+      const content = document.getElementById('modalContent');
+
+      // Simple markdown to HTML conversion
+      let html = doc.content
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/^\- (.+)$/gm, '<li>$1</li>')
+        .replace(/^(\d+)\. (.+)$/gm, '<li>$2</li>')
+        .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+        .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+        .replace(/`(.+?)`/g, '<code>$1</code>')
+        .replace(/\n\n/g, '<br><br>');
+
+      content.innerHTML = `
+        <h2>${escapeHtml(doc.title)}</h2>
+        <div class="modal-meta">
+          <span>分类: ${escapeHtml(doc.category)}</span>
+          <span>标签: ${doc.tags.join(', ')}</span>
+          <span>创建: ${doc.createdAt}</span>
+          <span>更新: ${doc.updatedAt}</span>
+        </div>
+        <div class="modal-content">${html}</div>
+      `;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('docModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function launchFullApp() {
+      // 直接打开知识库应用
+      window.open('http://localhost:5173', '_blank');
+    }
+
+    function openKnowledgeDir() {
+      // 打开知识库文档管理页面
+      window.open('http://localhost:5173/knowledge', '_blank');
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Close modal on overlay click
+    document.getElementById('docModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Close modal on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Initial render
+    renderDocs(documents);
+  </script>
+</body>
+</html>

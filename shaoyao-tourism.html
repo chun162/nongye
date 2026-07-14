@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>芍药种植旅游商业方案</title>
+  
+  <!-- TailwindCSS CDN -->
+  <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/tailwindcss/3.0.23/tailwind.min.js"></script>
+  
+  <!-- 字体 -->
+  <link href="https://fonts.loli.net/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow: hidden;
+    }
+    
+    /* 幻灯片容器 */
+    .slides-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+    }
+    
+    /* 单个幻灯片 */
+    .slide {
+      width: 100%;
+      height: 100%;
+      max-width: 450px;
+      max-height: 800px;
+      aspect-ratio: 9/16;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+    }
+    
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .slide.prev {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    
+    /* 动态光斑 */
+    .light-spot {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    
+    .light-spot-1 {
+      width: 300px;
+      height: 300px;
+      background: #3b82f6;
+      top: -100px;
+      right: -100px;
+      animation: float1 20s ease-in-out infinite;
+    }
+    
+    .light-spot-2 {
+      width: 250px;
+      height: 250px;
+      background: #8b5cf6;
+      bottom: -80px;
+      left: -80px;
+      animation: float2 25s ease-in-out infinite;
+    }
+    
+    .light-spot-3 {
+      width: 200px;
+      height: 200px;
+      background: #06b6d4;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: float3 18s ease-in-out infinite;
+    }
+    
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-50px, 30px); }
+      50% { transform: translate(30px, 50px); }
+      75% { transform: translate(50px, -20px); }
+    }
+    
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(40px, -40px); }
+      66% { transform: translate(-30px, 30px); }
+    }
+    
+    @keyframes float3 {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+    }
+    
+    /* 内容层 */
+    .slide-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      width: 100%;
+    }
+    
+    /* 进度条 */
+    .progress-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8`px;
+      z-index: 100;
+    }
+    
+    .progress-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .progress-dot.active {
+      background: #fff;
+      transform: scale(1.3);
+    }
+    
+    .progress-dot:hover {
+      background: rgba(255,255,255,0.6);
+    }
+    
+    /* 页码 */
+    .page-number {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.4);
+      z-index: 100;
+    }
+    .site-nav {
+      position:fixed;top:0;left:0;right:0;z-index:9999;
+      background:rgba(45,27,14,0.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(196,150,58,0.3);
+      padding:12px 32px;
+      display:flex;align-items:center;gap:16px;
+    }
+    .back-link {
+      color:#e8c97a;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:500;
+      transition:color 0.3s;
+    }
+    .back-link:hover { color:#c4963a; }
+    .nav-title {
+      color:#c4704b;
+      font-size:14px;
+      opacity:0.7;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <a href="index.html" class="back-link">← 返回农业科技官网</a>
+    <span class="nav-title">芍药种植旅游商业方案</span>
+    <nav class="sub-nav" style="margin-left:auto;display:flex;gap:8px;">
+      <a href="shaoyao.html" style="color:#e8c97a;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(196,150,58,0.15);">管理系统</a>
+      <a href="dashboard.html" style="color:#e8c97a;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(196,150,58,0.15);">监控看板</a>
+      <a href="knowledge-base.html" style="color:#e8c97a;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(196,150,58,0.15);">知识库</a>
+    </nav>
+  </header>
+  <div class="slides-container">
+    
+    <!-- 幻灯片 1: 封面页 -->
+    <div class="slide active">
+      <div class="light-spot light-spot-1"></div>
+      <div class="light-spot light-spot-2"></div>
+      <div class="slide-content">
+        <h1 class="text-5xl font-black mb-6 leading-tight">芍药种植旅游商业方案</h1>
+        <p class="text-xl font-light text-gray-400">农业+旅游+文化融合创新</p>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 2: 项目亮点 -->
+    <div class="slide">
+      <div class="light-spot light-spot-2"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">芍药主题旅游融合创新</h1>
+        <p class="text-xl font-light text-gray-400 mb-4">农业种植+文化旅游+休闲度假</p>
+        <p class="text-lg font-normal mb-4">打造新型芍药主题度假目的地</p>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 3: 市场机会 -->
+    <div class="slide">
+      <div class="light-spot light-spot-1"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">四大市场机遇</h1>
+        <ul class="text-lg font-normal space-y-4">
+          <li>乡村旅游市场规模持续增长</li>
+          <li>花卉主题旅游成为新兴热点</li>
+          <li>芍药文化底蕴深厚，观赏价值高</li>
+          <li>消费者对生态旅游需求旺盛</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 4: 商业模式 -->
+    <div class="slide">
+      <div class="light-spot light-spot-2"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">商业模式核心</h1>
+        <p class="text-xl font-bold mb-4">四大核心业务</p>
+        <ul class="text-lg font-normal space-y-3 mb-6">
+          <li>芍药种植基地 - 规模化种植</li>
+          <li>芍药主题公园 - 观光游览</li>
+          <li>芍药文化体验 - DIY体验</li>
+          <li>芍药衍生品开发 - 文创产品</li>
+        </ul>
+        <p class="text-xl font-bold mb-4">五大盈利模式</p>
+        <ul class="text-lg font-normal space-y-3">
+          <li>门票收入 - 景区观光</li>
+          <li>体验项目收入 - DIY制作</li>
+          <li>衍生品销售 - 花茶、精油</li>
+          <li>住宿餐饮收入 - 主题民宿</li>
+          <li>节庆活动收入 - 芍药节</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 5: 公司注册 -->
+    <div class="slide">
+      <div class="light-spot light-spot-1"></div>
+      <div class="light-spot light-spot-2"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">注册新公司方案</h1>
+        <p class="text-xl font-bold mb-4">公司类型：有限责任公司</p>
+        <p class="text-lg font-normal mb-4">注册资本：500-1000万元</p>
+        <p class="text-xl font-bold mb-4">经营范围</p>
+        <ul class="text-lg font-normal space-y-2 mb-6">
+          <li>花卉种植与销售</li>
+          <li>旅游景区开发与管理</li>
+          <li>文化旅游项目经营</li>
+          <li>农产品加工与销售</li>
+          <li>民宿经营与管理</li>
+        </ul>
+        <p class="text-xl font-bold mb-4">股权结构</p>
+        <p class="text-lg font-normal">创始团队70% + 战略投资30%</p>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 6: 投资规划 -->
+    <div class="slide">
+      <div class="light-spot light-spot-2"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">投资规划</h1>
+        <p class="text-xl font-bold mb-4">初期投资（第一年）</p>
+        <ul class="text-lg font-normal space-y-2 mb-6">
+          <li>土地租赁/购买：200万元</li>
+          <li>种植基地建设：300万元</li>
+          <li>基础设施建设：150万元</li>
+          <li>主题公园建设：250万元</li>
+          <li>运营资金：100万元</li>
+          <li class="text-xl font-bold">总计：约1000万元</li>
+        </ul>
+        <p class="text-xl font-bold mb-4">中期投资（第二年）</p>
+        <ul class="text-lg font-normal space-y-2">
+          <li>民宿建设：300万元</li>
+          <li>配套设施完善：200万元</li>
+          <li>市场推广：100万元</li>
+          <li class="text-xl font-bold">总计：600万元</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 7: 运营策略 -->
+    <div class="slide">
+      <div class="light-spot light-spot-1"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">运营策略</h1>
+        <p class="text-xl font-bold mb-4">四季运营模式</p>
+        <ul class="text-lg font-normal space-y-2 mb-6">
+          <li>春季（3-5月）：芍药花期，主打观赏旅游</li>
+          <li>夏季（6-8月）：亲子研学，避暑度假</li>
+          <li>秋季（9-11月）：文化体验，养生休闲</li>
+          <li>冬季（12-2月）：室内体验，文创销售</li>
+        </ul>
+        <p class="text-xl font-bold mb-4">营销推广</p>
+        <ul class="text-lg font-normal space-y-2">
+          <li>社交媒体营销：小红书、抖音、公众号</li>
+          <li>节庆活动营销：芍药节、文化节</5>
+          <li>渠道合作：旅行社、OTA平台</li>
+          <li>会员体系：年卡会员、VIP服务</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 8: 财务预测 -->
+    <div class="slide">
+      <div class="light-spot light-spot-2"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">财务预测</h1>
+        <p class="text-xl font-bold mb-4">第一年收入预测</p>
+        <ul class="text-lg font-normal space-y-2 mb-6">
+          <li>门票收入：300万元</li>
+          <li>体验项目收入：150万元</li>
+          <li>衍生品销售：100万元</li>
+          <li>住宿餐饮：200万元</li>
+          <li class="text-xl font-bold">总计：750万元</li>
+        </ul>
+        <p class="text-xl font-bold mb-4">第二年收入预测</p>
+        <ul class="text-lg font-normal space-y-2">
+          <li>门票收入：500万元</li>
+          <li>体验项目收入：250万元</li>
+          <li>衍生品销售：200万元</li>
+          <li>住宿餐饮：400万元</li>
+          <li class="text-xl font-bold">总计：1350万元</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 9: 风险应对 -->
+    <div class="slide">
+      <div class="light-spot light-spot-1"></div>
+      <div class="light-spot light-spot-2"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">风险应对</h1>
+        <p class="text-xl font-bold mb-4">四大风险</p>
+        <ul class="text-lg font-normal space-y-2 mb-6">
+          <li>气候风险 - 芍药种植受气候影响</li>
+          <li>市场风险 - 旅游市场波动</li>
+          <li>运营风险 - 季节性客流不均</li>
+          <li>政策风险 - 土地政策变化</li>
+        </ul>
+        <p class="text-xl font-bold mb-4">应对策略</p>
+        <ul class="text-lg font-normal space-y-2">
+          <li>建立温室种植补充方案</li>
+          <li>多元化产品开发</li>
+          <li>淡季营销活动策划</li>
+          <li>合规经营，政策跟踪</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 10: 核心竞争力 -->
+    <div class="slide">
+      <div class="light-spot light-spot-2"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">核心竞争力</h1>
+        <ul class="text-lg font-normal space-y-4">
+          <li>独特的芍药主题差异化</li>
+          <li>传统文化与现代旅游融合</li>
+          <li>完整的产业链闭环</li>
+          <li>可持续发展的生态模式</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 11: 发展愿景 -->
+    <div class="slide">
+      <div class="light-spot light-spot-1"></div>
+      <div class="light-spot light-spot-2"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-3xl font-bold mb-8">发展愿景</h1>
+        <p class="text-xl font-light mb-4">成为中国知名的芍药主题旅游目的地</p>
+        <p class="text-lg font-normal mb-4">打造芍药文化品牌</p>
+        <p class="text-lg font-normal">实现农业+旅游+文化的融合发展</p>
+      </div>
+    </div>
+    
+    <!-- 幻灯片 12: 结束页 -->
+    <div class="slide">
+      <div class="light-spot light-spot-1"></div>
+      <div class="light-spot light-spot-2"></div>
+      <div class="light-spot light-spot-3"></div>
+      <div class="slide-content">
+        <h1 class="text-4xl font-black mb-6 leading-tight">感谢观看</h1>
+        <p class="text-xl font-light text-gray-400">芍药种植旅游商业方案</p>
+        <p class="text-lg font-normal mt-8">联系方式：example@company.com</p>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- 进度条 -->
+  <div class="progress-bar" id="progressBar"></div>
+  
+  <!-- 页码 -->
+  <div class="page-number" id="pageNumber">1 / 12</div>
+  
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const progressBar = document.getElementById('progressBar');
+    const pageNumber = document.getElementById('pageNumber');
+    let currentSlide = 0;
+    
+    // 初始化进度条
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.className = `progress-dot ${index === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => goToSlide(index));
+      progressBar.appendChild(dot);
+    });
+    
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove('active', 'prev');
+        if (index === currentSlide) {
+          slide.classList.add('active');
+        } else if (index < currentSlide) {
+          slide.classList.add('prev');
+        }
+      });
+      
+      // 更新进度条
+      document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+      
+      // 更新页码
+      pageNumber.textContent = `${currentSlide + 1} / ${slides.length}`;
+    }
+    
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updateSlides();
+      }
+    }
+    
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlides();
+      }
+    }
+    
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlides();
+    }
+    
+    // 键盘控制
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+    
+    // 触摸滑动支持
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    });
+    
+    document.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>

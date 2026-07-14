@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>10亩林地芍药种植规划方案</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans SC',-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;
+  background:linear-gradient(135deg,#3d2010 0%,#2d1b0e 50%,#1e1208 100%);
+  background-attachment:fixed;
+  color:#e8d5c4;
+  min-height:100vh;
+  padding:60px 20px 40px;
+  line-height:1.75;
+}
+.site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(45,27,14,0.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(196,150,58,0.3);
+  padding:12px 32px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.back-link{color:#e8c97a;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.3s}
+.back-link:hover{color:#c4963a}
+.nav-title{color:#c4704b;font-size:14px;opacity:0.7}
+.sub-nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.sub-nav a{
+  color:#e8a882;text-decoration:none;font-size:12px;
+  padding:4px 12px;border-radius:16px;
+  background:rgba(196,112,75,0.1);
+  transition:all 0.25s;
+}
+.sub-nav a:hover{background:rgba(196,112,75,0.25);color:#f5ddd3}
+.sub-nav a.active{background:rgba(196,150,58,0.25);color:#e8c97a}
+.container{max-width:960px;margin:0 auto}
+.header{
+  text-align:center;padding:40px 30px;
+  background:rgba(255,255,255,0.04);
+  border-radius:16px;margin-bottom:28px;
+  border:1px solid rgba(196,150,58,0.15);
+}
+.header h1{
+  font-size:2rem;font-weight:700;
+  background:linear-gradient(90deg,#e8c97a,#c4704b,#e8a882);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:10px;
+}
+.header .sub{font-size:0.95rem;color:#c4963a;margin-bottom:6px}
+.header .info{font-size:0.82rem;color:#8a6a4a}
+h2{
+  color:#e8c97a;font-size:1.25rem;margin:32px 0 14px;
+  padding-bottom:6px;border-bottom:2px solid rgba(196,150,58,0.2);
+  display:flex;align-items:center;gap:8px;
+}
+h3{color:#e8a882;font-size:1.05rem;margin:20px 0 8px}
+p{margin:8px 0;color:#d4c0b0}
+ul{margin:8px 0 8px 20px}
+li{margin:4px 0;color:#d4c0b0}
+.tag{
+  display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.75rem;font-weight:600;margin-right:4px;
+}
+.tag-gold{background:rgba(196,150,58,0.2);color:#e8c97a}
+.tag-red{background:rgba(196,112,75,0.2);color:#e8a882}
+.tag-green{background:rgba(124,140,110,0.2);color:#a8c08a}
+.tag-blue{background:rgba(99,102,241,0.2);color:#a5b4fc}
+.note{
+  background:rgba(196,150,58,0.06);
+  border-left:3px solid #c4963a;
+  border-radius:0 8px 8px 0;
+  padding:12px 18px;margin:14px 0;
+  color:#e8d5c4;font-size:0.9rem;
+}
+.note strong{color:#e8c97a}
+table{
+  width:100%;border-collapse:collapse;margin:14px 0;
+  font-size:0.85rem;background:rgba(255,255,255,0.03);
+  border-radius:10px;overflow:hidden;
+}
+th{
+  background:rgba(196,150,58,0.12);color:#e8c97a;
+  padding:10px 14px;text-align:left;font-weight:600;
+}
+td{
+  padding:9px 14px;border-top:1px solid rgba(255,255,255,0.05);
+  color:#d4c0b0;
+}
+tr:hover td{background:rgba(196,150,58,0.04)}
+.card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(196,150,58,0.1);
+  border-radius:12px;padding:16px 20px;margin:14px 0;
+}
+.benefit{
+  display:flex;align-items:flex-start;gap:10px;
+  margin:10px 0;padding:10px 14px;
+  background:rgba(196,150,58,0.04);
+  border-radius:8px;border-left:3px solid #c4963a;
+}
+.benefit .icon{font-size:1.2rem;flex-shrink:0}
+.benefit .title{font-size:0.9rem;font-weight:600;color:#e8c97a;margin-bottom:2px}
+.benefit .desc{font-size:0.82rem;color:#b8a890}
+.print-btn{
+  position:fixed;bottom:24px;right:24px;z-index:100;
+  background:linear-gradient(135deg,#c4963a,#c4704b);
+  color:#fff;border:none;border-radius:50px;
+  padding:12px 24px;font-size:14px;font-weight:600;
+  cursor:pointer;box-shadow:0 4px 16px rgba(196,112,75,0.4);
+  transition:transform 0.25s;
+}
+.print-btn:hover{transform:scale(1.05)}
+@media(max-width:768px){
+  .container{max-width:100%}
+  table{font-size:0.78rem}
+  th,td{padding:6px 8px}
+  .sub-nav{display:none}
+}
+@media print{
+  body{background:#fff;color:#2d1b0e;padding:20px}
+  .site-nav,.print-btn{display:none}
+  .header{background:#faf6f1}
+  h2{color:#6b3a2a;border-color:#c4704b}
+  h3{color:#c4704b}
+  p,li{color:#2d1b0e}
+  th{background:#f5e8d5;color:#6b3a2a}
+  td{color:#2d1b0e;border-color:#ddd}
+  .note{background:#fdf8f0}
+  .card{background:#faf6f1}
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <a href="index.html" class="back-link">← 返回农业科技官网</a>
+  <span class="nav-title">10亩林地芍药种植规划方案</span>
+  <nav class="sub-nav"><a href="shaoyao.html">管理系统</a><a href="shaoyao-variety.html">品种选型</a><a href="shaoyao-planning.html" class="active">种植规划</a><a href="shaoyao-planning-4yr.html">4年苗方案</a><a href="shaoyao-tourism.html">旅游商业</a><a href="dashboard.html">监控看板</a><a href="knowledge-base.html">知识库</a></nav>
+</header>
+<div class="container">
+  <div class="header">
+    <h1>🌺 10亩林地芍药种植规划方案</h1>
+    <div class="sub">总体规划方案 · 林地评估 · 品种配置 · 投入产出 · 风险评估</div>
+  </div>
+  
+  <h2>一、林地评估与选址要求</h2>
+  <p>芍药喜光但耐半阴，适合林下套种。10亩林地需要评估以下条件：</p>
+  <div class="note"><strong>【建议】</strong>优先选择杨树、银杏、核桃等落叶阔叶林下，冬季落叶后光照充足，夏季树冠提供散射光。不宜选择松杉等针叶林，土壤过酸且遮光过重。</div>
+  <table>
+    <tr><th>评估项目</th><th>要求</th><th>检查方法</th></tr>
+    <tr><td>光照条件</td><td>郁闭度≤0.4，每日直射光≥4小时</td><td>选择落叶林（如杨树、银杏），冬季可增加透光</td></tr>
+    <tr><td>土壤pH</td><td>6.5~7.5，微酸至中性</td><td>用pH试纸测试，过酸需撒石灰调节</td></tr>
+    <tr><td>土壤深度</td><td>≥40cm耕作层</td><td>挖土观察，浅土层需起垄栽培</td></tr>
+    <tr><td>排水性</td><td>不积水，地下水位<1m</td><td>雨后观察有无积水，积水需开排水沟</td></tr>
+    <tr><td>坡度</td><td><15°，便于管理</td><td>过陡需做梯田式整地</td></tr>
+    <tr><td>水源</td><td>靠近水源或可灌溉</td><td>芍药怕涝但花期需水</td></tr>
+  </table>
+
+  <h2>二、土地整备方案</h2>
+  <table>
+    <tr><th>工作内容</th><th>时间</th><th>标准</th></tr>
+    <tr><td>清林除杂</td><td>种植前2个月</td><td>清除灌木杂草，保留高大乔木</td></tr>
+    <tr><td>翻耕整地</td><td>8月（种植前1个月）</td><td>深翻30-40cm，打碎土块</td></tr>
+    <tr><td>施基肥</td><td>8月翻耕时</td><td>腐熟有机肥3000-5000kg/亩 + 过磷酸钙50kg/亩</td></tr>
+    <tr><td>起垄做畦</td><td>9月初</td><td>垄宽80-100cm，高20cm，沟宽30cm</td></tr>
+    <tr><td>土壤消毒</td><td>种植前7天</td><td>多菌灵500倍液或石灰粉50kg/亩</td></tr>
+    <tr><td>开排水沟</td><td>整地时同步</td><td>主沟深60cm，支沟深40cm</td></tr>
+  </table>
+
+  <h2>三、品种选择与配置方案</h2>
+  <p>根据林地条件（郁闭度≤0.4），选择耐半阴、适应性强的品种。总种植量约2500-3000株/亩×10亩=25000-30000株。推荐以下配置：</p>
+  <table>
+    <tr><th>用途分区</th><th>品种</th><th>种植面积</th><th>种植密度</th><th>数量</th><th>占比</th></tr>
+    <tr><td><span class="tag tag-gold">切花主产区</span></td><td>莎拉（主）+种生粉（辅）</td><td>5亩</td><td>3500株/亩</td><td>17500株</td><td>50%</td></tr>
+    <tr><td><span class="tag tag-red">变色系观赏区</span></td><td>落日珊瑚+御前表演+夏威夷珊瑚</td><td>2亩</td><td>3000株/亩</td><td>6000株</td><td>20%</td></tr>
+    <tr><td><span class="tag tag-blue">黄色珍品区</span></td><td>芭茨拉（伊藤芍药）</td><td>1亩</td><td>2000株/亩</td><td>2000株</td><td>10%</td></tr>
+    <tr><td><span class="tag tag-green">白色古典区</span></td><td>奶油碗+杨妃出浴</td><td>1亩</td><td>3000株/亩</td><td>3000株</td><td>10%</td></tr>
+    <tr><td><span class="tag tag-blue">新品种试种区</span></td><td>鲑鱼雪纺+伊藤新品</td><td>1亩</td><td>2000株/亩</td><td>2000株</td><td>10%</td></tr>
+  </table>
+
+  <h2>四、种植技术方案</h2>
+  <h3>4.1 种植时间</h3>
+  <p>最佳种植期：9月中旬至10月底（秋季栽植）。此时根茎养分充足，冬前可生根。6-7月预订种苗，确保秋季到货。</p>
+
+  <h3>4.2 种植方法</h3>
+  <div class="card">
+    <ul>
+      <li><strong>穴挖:</strong> 深30cm、宽25cm，行距60-80cm、株距40-50cm</li>
+      <li><strong>施底肥:</strong> 每穴施腐熟有机肥0.5kg+骨粉50g，与土拌匀</li>
+      <li><strong>栽植:</strong> 芽头朝上，覆土5-8cm（寒区可覆土10cm），芽头与土面齐平</li>
+      <li><strong>浇定根水:</strong> 栽后立即浇透水</li>
+      <li><strong>覆土防冻:</strong> 入冬前覆土10-15cm防寒</li>
+    </ul>
+  </div>
+
+  <h3>4.3 林下种植要点（关键）</h3>
+  <div class="card">
+    <ul>
+      <li><strong>根系竞争:</strong> 乔木根系区域挖穴时避开大树主根，距树干≥1.5m</li>
+      <li><strong>光照管理:</strong> 郁闭度超过0.4时适当间伐或修剪树冠，保证芍药充足光照</li>
+      <li><strong>水分管理:</strong> 林下蒸发量小，注意雨季排水，防止芍药根腐</li>
+      <li><strong>落叶利用:</strong> 乔木落叶可覆盖芍药垄面，保墒增肥，减少除草</li>
+      <li><strong>套种优势:</strong> 落叶林冬季无叶→芍药冬季休眠期充足光照利于养分积累</li>
+      <li><strong>病虫害隔离:</strong> 林下通风不如露地，注意灰霉病预防，种植密度适当降低</li>
+    </ul>
+  </div>
+
+  <h2>五、年度管理计划</h2>
+
+  <h3>第一年（2026年秋植～2027年）—— 养根阶段</h3>
+  <div class="card">
+    <ul>
+      <li>2026年6-7月: 预订种苗（推荐菏泽产区）</li>
+      <li>2026年8月: 清林整地、施基肥、起垄</li>
+      <li>2026年9-10月: 栽植完成</li>
+      <li>2026年11月: 覆土越冬</li>
+      <li>2027年3月: 去除防寒土，施春肥（复合肥20kg/亩）</li>
+      <li>2027年4-5月: 出现少量花蕾，全部摘除（不让开花，集中养根）</li>
+      <li>2027年6-8月: 夏季除草2-3次，雨季排水</li>
+      <li>2027年9-10月: 施秋肥（有机肥2000kg/亩）</li>
+      <li>2027年11月: 越冬管理</li>
+    </ul>
+  </div>
+
+  <h3>第二年（2028年）—— 少量产花</h3>
+  <div class="card">
+    <ul>
+      <li>春季管理: 3月追施复合肥30kg/亩</li>
+      <li>4-5月花期: 可留下50%花蕾切花（产约5000-8000枝/亩），其余摘除</li>
+      <li>夏季管理: 除草3-4次，保持林下整洁</li>
+      <li>秋季管理: 9月施有机肥3000kg/亩</li>
+      <li>12月: 地上部分枯萎后，清理枯枝落叶</li>
+    </ul>
+  </div>
+
+  <h3>第三年及以后（2029年+）—— 丰产期</h3>
+  <div class="card">
+    <ul>
+      <li>春季: 3月复合肥40kg/亩，5月花后追施钾肥</li>
+      <li>产量: 产切花12000-18000枝/亩，花枝长度可达60-80cm</li>
+      <li>切花采收: 花蕾显色后（未开放前）清晨采收，冷链运输</li>
+      <li>销售: 鲜切花批发价2-8元/枝，高端品种（芭茨拉）可达10-15元/枝</li>
+      <li>根茎采收: 种植4-5年后可采挖药用芍药根（白芍），约1500-2000kg/亩干品</li>
+    </ul>
+  </div>
+
+  <h2>六、投入产出估算</h2>
+
+  <h3>6.1 前三年投入（10亩合计）</h3>
+  <table>
+    <tr><th>项目</th><th>单价</th><th>数量</th><th>合计（元）</th></tr>
+    <tr><td>莎拉种苗</td><td>3元/株</td><td>17500株</td><td>52,500</td></tr>
+    <tr><td>落日珊瑚种苗</td><td>8元/株</td><td>6000株</td><td>48,000</td></tr>
+    <tr><td>芭茨拉种苗</td><td>25元/株</td><td>2000株</td><td>50,000</td></tr>
+    <tr><td>白色系种苗</td><td>4元/株</td><td>3000株</td><td>12,000</td></tr>
+    <tr><td>试种新品种</td><td>10元/株</td><td>2000株</td><td>20,000</td></tr>
+    <tr><td><strong>种苗小计</strong></td><td></td><td></td><td><strong>182,500</strong></td></tr>
+    <tr><td>整地（清林+翻耕）</td><td>500元/亩</td><td>10亩</td><td>5,000</td></tr>
+    <tr><td>基肥（有机肥）</td><td>800元/亩/年</td><td>10亩×3年</td><td>24,000</td></tr>
+    <tr><td>追肥（复合肥等）</td><td>300元/亩/年</td><td>10亩×3年</td><td>9,000</td></tr>
+    <tr><td>农药</td><td>200元/亩/年</td><td>10亩×3年</td><td>6,000</td></tr>
+    <tr><td>人工（日常管理）</td><td>1500元/亩/年</td><td>10亩×3年</td><td>45,000</td></tr>
+    <tr><td>工具+灌溉设施</td><td>一次性</td><td></td><td>10,000</td></tr>
+    <tr><td>土地租金</td><td>500元/亩/年</td><td>10亩×3年</td><td>15,000</td></tr>
+    <tr><td>其他（运输、包装等）</td><td>300元/亩/年</td><td>10亩×3年</td><td>9,000</td></tr>
+    <tr><td><strong>3年总投入</strong></td><td></td><td></td><td><strong>约305,500元</strong></td></tr>
+    <tr><td><strong>平均每年每亩</strong></td><td></td><td></td><td><strong>约10,200元/亩/年</strong></td></tr>
+  </table>
+
+  <h3>6.2 收益预测（丰产期）</h3>
+  <table>
+    <tr><th>收入来源</th><th>产量/亩</th><th>价格</th><th>年收入/10亩</th></tr>
+    <tr><td>鲜切花（莎拉、种生粉）</td><td>15000枝</td><td>3-5元/枝</td><td>450,000-750,000</td></tr>
+    <tr><td>鲜切花（落日珊瑚）</td><td>10000枝</td><td>6-10元/枝</td><td>120,000-200,000（2亩）</td></tr>
+    <tr><td>鲜切花（芭茨拉）</td><td>8000枝</td><td>10-15元/枝</td><td>80,000-120,000（1亩）</td></tr>
+    <tr><td><strong>合计丰产期年收入</strong></td><td></td><td></td><td><strong>约65万-107万</strong></td></tr>
+    <tr><td>扣除年运营成本</td><td>约10万元/年</td><td></td><td>约10万</td></tr>
+    <tr><td><strong>年净利润</strong></td><td></td><td></td><td><strong>约55万-97万</strong></td></tr>
+  </table>
+  <div class="note">注：以上为丰产期（第3年起）测算，第1-2年几乎无收入。回本周期约3-4年。切花市场价格波动较大，建议提前建立销售渠道。</div>
+
+  <h2>七、风险评估与应对</h2>
+  <table>
+    <tr><th>风险类型</th><th>风险等级</th><th>应对措施</th></tr>
+    <tr><td>光照不足</td><td><span class="tag tag-gold">中</span></td><td>适当间伐，选择落叶林地，耐阴品种优先</td></tr>
+    <tr><td>根腐病/灰霉病</td><td><span class="tag tag-red">高</span></td><td>开好排水沟，种植密度适当，雨季前喷杀菌剂</td></tr>
+    <tr><td>价格下跌</td><td><span class="tag tag-red">中高</span></td><td>多品种搭配，发展电商直销+花市批发双渠道</td></tr>
+    <tr><td>种植技术不足</td><td><span class="tag tag-gold">中</span></td><td>聘请菏泽技术员顾问，前两年少量试种</td></tr>
+    <tr><td>自然灾害（冻害）</td><td><span class="tag tag-green">低</span></td><td>冬季覆土防寒，选择耐寒品种</td></tr>
+    <tr><td>销售渠道不畅</td><td><span class="tag tag-red">中高</span></td><td>提前对接花市、花店、线上平台（拼多多/抖音电商）</td></tr>
+  </table>
+
+  <h2>八、实施时间表</h2>
+  <table>
+    <tr><th>时间</th><th>工作内容</th></tr>
+    <tr><td>2026年6月</td><td>林地评估、土壤检测、品种选定、种苗预订（菏泽）</td></tr>
+    <tr><td>2026年7月</td><td>林地清杂、排水沟开挖、灌溉设施安装</td></tr>
+    <tr><td>2026年8月</td><td>翻耕整地、施基肥、起垄做畦</td></tr>
+    <tr><td>2026年9-10月</td><td>栽植完成，浇定根水，覆土越冬</td></tr>
+    <tr><td>2026年11月-2027年2月</td><td>冬季休眠期</td></tr>
+    <tr><td>2027年3-10月</td><td>第一年养根管理（摘蕾、除草、施肥）</td></tr>
+    <tr><td>2028年4-5月</td><td>少量采花试销</td></tr>
+    <tr><td>2029年起</td><td>进入丰产期，稳定采收销售</td></tr>
+    <tr><td>2030-2031年</td><td>考虑采挖部分根茎做白芍药材销售</td></tr>
+  </table>
+
+  <h2>九、核心建议汇总</h2>
+  <div class="benefit"><span class="icon">✅</span><div><div class="title">种苗质量是关键</div><div class="desc">宁可多花钱买菏泽正品苗，不要贪便宜</div></div></div>
+  <div class="benefit"><span class="icon">✅</span><div><div class="title">林下种植核心是光照控制</div><div class="desc">郁闭度超过0.4必须间伐</div></div></div>
+  <div class="benefit"><span class="icon">✅</span><div><div class="title">前两年不要着急见花</div><div class="desc">养好根才能高产出</div></div></div>
+  <div class="benefit"><span class="icon">✅</span><div><div class="title">切花+根茎双收益模式最稳妥</div><div class="desc">第4-5年挖根又是一笔收入</div></div></div>
+  <div class="benefit"><span class="icon">✅</span><div><div class="title">新品种小比例试种（10%以内）</div><div class="desc">不要大面积押注</div></div></div>
+  <div class="benefit"><span class="icon">✅</span><div><div class="title">先搞定销售渠道再扩产</div><div class="desc">没人比市场更能告诉你种什么</div></div></div>
+
+</div>
+<button class="print-btn" onclick="window.print()">打印 / 导出PDF</button>
+</body>
+</html>

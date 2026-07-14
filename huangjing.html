@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>林地黄精种植实施方案</title>
+<style>
+* {margin:0;padding:0;box-sizing:border-box}
+body {
+    font-family: -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #1a3a1a, #2d5016, #1a3a1a);
+    color: #e8f5e0;
+    min-height: 100vh;
+    padding: 80px 20px 20px;
+    line-height: 1.7
+}
+.site-nav {
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(26,58,26,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(100,200,50,0.2);
+  padding:14px 32px;
+  display:flex;align-items:center;gap:16px;
+}
+.back-link {
+  color:#8fbc5a;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  transition:color 0.3s;
+}
+.back-link:hover { color:#a8e063; }
+.nav-title {
+  color:#a8e063;
+  font-size:14px;
+  opacity:0.7;
+}
+.container {max-width: 900px;margin: 0 auto}
+.header {
+    text-align: center;
+    padding: 35px 25px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(100,200,50,0.2)
+}
+.header h1 {
+    font-size: 2.1rem;
+    background: linear-gradient(90deg, #a8e063, #56ab2f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px
+}
+.header .subtitle {font-size: 0.95rem;color:#8fbc5a;margin-bottom:6px}
+.header .info {font-size:0.82rem;color:#6a9e3a}
+
+h2 {
+    color: #a8e063;
+    font-size: 1.25rem;
+    margin: 28px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid rgba(100,200,50,0.25);
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+h3 {color:#c8f08a;font-size:1rem;margin:16px 0 8px}
+
+table {
+    width:100%;
+    border-collapse: collapse;
+    margin:12px 0;
+    font-size:0.88rem;
+    background:rgba(255,255,255,0.04);
+    border-radius:10px;
+    overflow:hidden
+}
+th {
+    background:rgba(100,200,50,0.15);
+    color:#a8e063;
+    padding:10px 14px;
+    text-align:left;
+    font-weight:600
+}
+td {
+    padding:9px 14px;
+    border-top:1px solid rgba(255,255,255,0.05);
+    color:#c8d8b8
+}
+tr:hover td{background:rgba(100,200,50,0.05)}
+
+.card {
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(100,200,50,0.12);
+    border-radius:12px;
+    padding:16px 20px;
+    margin:14px 0
+}
+
+.tag {
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:20px;
+    font-size:0.75rem;
+    font-weight:600;
+    margin-right:4px
+}
+.tag-green{background:rgba(86,171,47,0.2);color:#a8e063}
+.tag-red{background:rgba(220,53,69,0.2);color:#ff8a80}
+.tag-blue{background:rgba(30,120,200,0.2);color:#82b1ff}
+.tag-yellow{background:rgba(255,193,7,0.2);color:#ffd97d}
+
+.section {margin-bottom:8px}
+.section-title{font-size:0.82rem;color:#7aaa40;margin-bottom:4px;font-weight:600}
+
+.benefit {display:flex;align-items:flex-start;gap:10px;margin:10px 0;padding:10px 14px;background:rgba(100,200,50,0.05);border-radius:8px;border-left:3px solid #56ab2f}
+.benefit .icon{font-size:1.3rem;flex-shrink:0}
+.benefit .title{font-size:0.9rem;font-weight:600;color:#b8e87a;margin-bottom:2px}
+.benefit .desc{font-size:0.82rem;color:#9ab87a}
+
+.warning {
+    background:rgba(255,193,7,0.08);
+    border:1px solid rgba(255,193,7,0.25);
+    border-radius:10px;
+    padding:14px 18px;
+    margin:12px 0;
+    font-size:0.85rem;
+    color:#ffd97d
+}
+.warning::before{content:'⚠️ ';font-size:1rem}
+
+.timeline {
+    position:relative;
+    padding-left:30px;
+    margin:14px 0
+}
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:8px;top:0;bottom:0;
+    width:3px;
+    background:linear-gradient(180deg,#56ab2f,#a8e063,#ffd97d,#56ab2f)
+}
+.tl-item{
+    position:relative;
+    margin-bottom:14px;
+    padding:10px 14px;
+    background:rgba(255,255,255,0.04);
+    border-radius:8px;
+    border:1px solid rgba(100,200,50,0.1)
+}
+.tl-item::before{
+    content:'';
+    position:absolute;
+    left:-25px;top:14px;
+    width:11px;height:11px;
+    border-radius:50%;
+    background:#56ab2f;
+    border:2px solid #1a3a1a
+}
+.tl-time{font-size:0.78rem;color:#7aaa40;font-weight:600;margin-bottom:3px}
+.tl-title{font-size:0.9rem;color:#c8f08a;font-weight:600}
+.tl-desc{font-size:0.82rem;color:#9ab87a;margin-top:2px}
+
+.print-btn {
+    display:block;margin:24px auto 0;
+    padding:13px 44px;
+    background:linear-gradient(90deg,#56ab2f,#a8e063);
+    color:#1a3a1a;font-weight:700;font-size:1rem;
+    border:none;border-radius:50px;cursor:pointer;
+    transition:transform .2s,box-shadow .2s
+}
+.print-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(86,171,47,0.35)}
+
+.divider{border:none;border-top:1px solid rgba(100,200,50,0.12);margin:20px 0}
+
+@media(max-width:600px){
+    .header h1{font-size:1.6rem}
+    table{font-size:0.8rem}
+}
+@media print{
+    body{background:#fff;color:#1a3a1a}
+    .print-btn{display:none}
+    .header{background:#f0f8ea}
+    th{background:#d0e8b0;color:#1a3a1a}
+    td{color:#333;border-color:#ccc}
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <a href="index.html" class="back-link">← 返回农业科技官网</a>
+  <span class="nav-title">林地黄精种植实施方案</span>
+  <nav class="sub-nav" style="margin-left:auto;display:flex;gap:8px;">
+    <a href="shaoyao.html" style="color:#8fbc5a;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(100,200,50,0.1);">芍药</a>
+    <a href="baihe.html" style="color:#8fbc5a;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(100,200,50,0.1);">百合</a>
+    <a href="digital-twin.html" style="color:#8fbc5a;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(100,200,50,0.1);">数字孪生</a>
+    <a href="dashboard.html" style="color:#8fbc5a;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(100,200,50,0.1);">监控看板</a>
+    <a href="knowledge-base.html" style="color:#8fbc5a;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(100,200,50,0.1);">知识库</a>
+  </nav>
+</header>
+<div class="container">
+
+    <!-- 标题 -->
+    <div class="header">
+        <h1>🌿 林地黄精种植实施方案</h1>
+        <div class="subtitle">多花黄精林下仿野生栽培 · 3年采收周期</div>
+        <div class="info">适用面积：5亩（可按比例调整）</div>
+    </div>
+
+    <!-- 一、项目概况 -->
+    <h2>📋 一、项目概况</h2>
+    <table>
+        <tr><th style="width:35%">项目</th><th>内容</th></tr>
+        <tr><td>种植品种</td><td>多花黄精（<em>Polygonatum cyrtonema</em>）</td></tr>
+        <tr><td>种植模式</td><td>林下仿野生栽培</td></tr>
+        <tr><td>建议面积</td><td>5亩（可按实际面积等比例缩放）</td></tr>
+        <tr><td>栽培周期</td><td>3~4年为一个采收周期</td></tr>
+        <tr><td>预期亩产</td><td>鲜根茎 800~1,200 kg</td></tr>
+        <tr><td>预估亩产值</td><td>¥15,000~30,000（鲜品）</td></tr>
+    </table>
+
+    <!-- 二、林地选择 -->
+    <h2>🌳 二、林地选择标准</h2>
+    <div class="section-title">优先选择以下条件的林地：</div>
+    <table>
+        <tr><th style="width:35%">条件</th><th>要求</th></tr>
+        <tr><td>🌳 郁闭度</td><td>30%~50%（遮阴率）稀疏林或经济林</td></tr>
+        <tr><td>🌱 土层深度</td><td>≥ 30 cm，质地疏松</td></tr>
+        <tr><td>💧 排水条件</td><td>排水良好，雨季不积水</td></tr>
+        <tr><td>🧪 土壤 pH</td><td>5.5~6.5（弱酸性）</td></tr>
+        <tr><td>🚰 灌溉</td><td>附近有水源，灌溉方便</td></tr>
+    </table>
+
+    <h3>✅ 推荐林地类型</h3>
+    <div class="benefit"><div class="icon">🌲</div><div><div class="title">杉木林、湿地松林</div><div class="desc">疏伐后郁闭度适中，适合林下种植</div></div></div>
+    <div class="benefit"><div class="icon">🫒</div><div><div class="title">油茶林、果园林</div><div class="desc">幼龄期可间作黄精，兼顾生态与收益</div></div></div>
+    <div class="benefit"><div class="icon">🏔️</div><div><div class="title">退耕还林地</div><div class="desc">间作模式，政策支持，效益双赢</div></div></div>
+    <div class="benefit"><div class="icon">🎋</div><div><div class="title">竹林边缘</div><div class="desc">自然遮阴环境，接近野生黄精生长条件</div></div></div>
+
+    <div class="warning">⚠️ 避免郁闭度 >70% 的密林、土壤黏重积水地、重金属污染地</div>
+
+    <h3>🛠️ 土壤改良方案</h3>
+    <table>
+        <tr><th style="width:35%">土壤问题</th><th>改良方法</th></tr>
+        <tr><td>pH > 7（偏碱）</td><td>施硫磺粉 3~5 kg/亩，或多施松针、锯末</td></tr>
+        <tr><td>pH < 5（过酸）</td><td>施石灰 50~100 kg/亩</td></tr>
+        <tr><td>土质黏重</td><td>掺入河沙、稻壳、腐熟锯末 500 kg/亩</td></tr>
+        <tr><td>肥力不足</td><td>撒施腐熟有机肥 1,000~2,000 kg/亩</td></tr>
+    </table>
+
+    <!-- 三、种植前准备 -->
+    <h2>🔧 三、种植前准备（第一年）</h2>
+
+    <div class="card">
+        <div class="section-title">1. 林地整理</div>
+        <div>• 清除杂草、灌木，保留原有乔木</div>
+        <div>• 郁闭度过高时适当间伐，将遮阴率调至 40%~50%</div>
+        <div>• 顺坡整地，做宽 1.2~1.5 m 的畦，畦沟宽 30 cm、深 20 cm</div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">2. 底肥施入</div>
+        <table>
+            <tr><th>肥料类型</th><th>用量</th></tr>
+            <tr><td>腐熟牛羊粪或商品有机肥</td><td>1,500~2,000 kg/亩</td></tr>
+            <tr><td>过磷酸钙</td><td>30~50 kg/亩</td></tr>
+        </table>
+        <div style="margin-top:8px;font-size:0.82rem;color:#9ab87a">翻入土中 20~25 cm，耙平待种</div>
+    </div>
+
+    <!-- 四、繁殖方法 -->
+    <h2>🌱 四、繁殖材料准备</h2>
+
+    <h3>方案A：根茎繁殖（推荐 👍）</h3>
+    <table>
+        <tr><th style="width:35%">项目</th><th>说明</th></tr>
+        <tr><td>种茎来源</td><td>购买优质道地种茎，或自繁健康种茎</td></tr>
+        <tr><td>选种标准</td><td>1~2年生，芽眼饱满，无病虫害，直径 ≥ 1.5 cm</td></tr>
+        <tr><td>切段方法</td><td>每段带 2~3 个芽眼，长 8~12 cm</td></tr>
+        <tr><td>消毒处理</td><td>切口蘸草木灰，或 50% 多菌灵 500 倍液浸 10 分钟</td></tr>
+        <tr><td>用种量</td><td>约 150~200 kg/亩（切段后重量）</td></tr>
+    </table>
+
+    <h3>方案B：种子繁殖（成本低，周期长）</h3>
+    <table>
+        <tr><th style="width:35%">项目</th><th>说明</th></tr>
+        <tr><td>种子采收</td><td>9~10月采收成熟果实，取种子洗去果肉</td></tr>
+        <tr><td>沙藏处理</td><td>种子:细沙 = 1:3，湿度 60%，层积 12~18 个月</td></tr>
+        <tr><td>播种时间</td><td>秋播（10~11月）或春播（3月）</td></tr>
+        <tr><td>播种量</td><td>5~8 kg/亩</td></tr>
+        <tr><td>育苗周期</td><td>2 年后移栽，总周期 5~6 年</td></tr>
+    </table>
+
+    <div class="warning">💡 建议：第一年用根茎繁殖快速成园，后续可自行留种扩繁，降低成本</div>
+
+    <!-- 五、定植 -->
+    <h2>🌿 五、定植（第一年春）</h2>
+    <table>
+        <tr><th style="width:35%">项目</th><th>参数</th></tr>
+        <tr><td>最佳时间</td><td>3月中下旬~4月上旬（日均温 ≥ 10°C）</td></tr>
+        <tr><td>株距</td><td>20~25 cm</td></tr>
+        <tr><td>行距</td><td>30~35 cm</td></tr>
+        <tr><td>深度</td><td>8~10 cm</td></tr>
+        <tr><td>密度</td><td>约 6,000~8,000 株/亩</td></tr>
+    </table>
+
+    <div class="card">
+        <div class="section-title">定植步骤</div>
+        <div>① 挖穴或开沟，深度 8~10 cm</div>
+        <div>② 芽眼朝上，平放根茎段</div>
+        <div>③ 覆土，轻压，浇透定根水</div>
+        <div>④ 畦面覆盖稻草或松针 3~5 cm（保湿、抑草）</div>
+    </div>
+
+    <!-- 六、田间管理 -->
+    <h2>📅 六、田间管理（全程 3~4 年）</h2>
+
+    <h3>年度管理历</h3>
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-time">3~4月（春季）</div>
+            <div class="tl-title">定植/补苗 · 追施苗肥</div>
+            <div class="tl-desc">尿素 5~8 kg/亩，促进幼苗生长</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">5~6月（初夏）</div>
+            <div class="tl-title">中耕除草第一次 · 追施有机肥</div>
+            <div class="tl-desc">浅耕 3~5 cm，氮磷钾复合肥 15~20 kg/亩</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">7~8月（盛夏）</div>
+            <div class="tl-title">保湿灌溉 · 排水防涝 · 第二次除草</div>
+            <div class="tl-desc">干旱时及时灌溉，雨季注意排水</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">9~10月（秋季）</div>
+            <div class="tl-title">施基肥 · 清园</div>
+            <div class="tl-desc">有机肥 1,000 kg/亩，清理枯枝落叶</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">11月~次年2月（冬季）</div>
+            <div class="tl-title">越冬管理</div>
+            <div class="tl-desc">清理枯茎，畦面加覆盖物保温</div>
+        </div>
+    </div>
+
+    <h3>施肥阶段方案</h3>
+    <table>
+        <tr><th>生长阶段</th><th>施肥方案</th></tr>
+        <tr><td><span class="tag tag-blue">幼苗期</span> 第1年</td><td>以氮肥为主，尿素 5~8 kg/亩</td></tr>
+        <tr><td><span class="tag tag-green">生长盛期</span> 第2~3年</td><td>氮磷钾复合肥（15-15-15）15~20 kg/亩</td></tr>
+        <tr><td><span class="tag tag-yellow">膨大期</span> 采收前1年</td><td>增施钾肥，叶面喷磷酸二氢钾 2~3 次</td></tr>
+    </table>
+
+    <div class="warning">🚫 严禁使用除草剂，保护黄精品质和土地安全</div>
+
+    <!-- 七、病虫害 -->
+    <h2>🐛 七、病虫害防治</h2>
+    <table>
+        <tr><th style="width:28%">病虫害</th><th>识别特征</th><th>防治措施</th></tr>
+        <tr><td><span class="tag tag-red">叶斑病</span></td>
+            <td>叶片黄褐色病斑，扩大后枯死</td>
+            <td>加强通风，发病初喷多菌灵或代森锰锌</td></tr>
+        <tr><td><span class="tag tag-red">根腐病</span></td>
+            <td>根茎变褐软腐，有恶臭</td>
+            <td>及时排水，拔除病株，石灰氮消毒病穴</td></tr>
+        <tr><td><span class="tag tag-red">蛴螬</span></td>
+            <td>地下害虫，咬食根茎</td>
+            <td>辛硫磷颗粒 2~3 kg/亩拌土</td></tr>
+        <tr><td><span class="tag tag-red">地老虎</span></td>
+            <td>夜间咬断幼苗茎基部</td>
+            <td>毒饵诱杀，晨间人工捕杀</td></tr>
+        <tr><td><span class="tag tag-red">蚜虫</span></td>
+            <td>聚集嫩叶、吸食汁液</td>
+            <td>吡虫啉或苦参碱生物农药</td></tr>
+    </table>
+
+    <div class="warning">💊 安全用药原则：优先使用生物农药（多杀霉素、苏云金杆菌、白僵菌），严格遵守安全间隔期</div>
+
+    <!-- 八、采收加工 -->
+    <h2>🍂 八、采收与初加工</h2>
+    <table>
+        <tr><th style="width:35%">项目</th><th>说明</th></tr>
+        <tr><td>采收时间</td><td>定植后第3年秋季（10~11月）</td></tr>
+        <tr><td>采收标准</td><td>地上部分枯萎后 2~3 周</td></tr>
+        <tr><td>采收方法</td><td>深挖 30~40 cm，避免损伤根茎</td></tr>
+    </table>
+
+    <h3>初加工流程</h3>
+    <div class="card">
+        <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px">
+            <span class="tag tag-green">鲜黄精根茎</span>
+            <span style="color:#7aaa40">→</span>
+            <span class="tag tag-blue">洗净泥沙</span>
+            <span style="color:#7aaa40">→</span>
+            <span class="tag tag-blue">蒸制（10~20分钟）</span>
+            <span style="color:#7aaa40">→</span>
+            <span class="tag tag-blue">晒干/烘干（50~60°C）</span>
+            <span style="color:#7aaa40">→</span>
+            <span class="tag tag-yellow">九蒸九晒（可选）</span>
+            <span style="color:#7aaa40">→</span>
+            <span class="tag tag-green">成品保存</span>
+        </div>
+    </div>
+
+    <h3>加工方式对比</h3>
+    <table>
+        <tr><th style="width:25%">方式</th><th>做法</th><th>用途</th></tr>
+        <tr><td>生晒黄精</td><td>洗净直接晒干</td><td>切片、打粉</td></tr>
+        <tr><td>蒸制黄精</td><td>蒸后晒，重复3次</td><td>药用</td></tr>
+        <tr><td>九蒸九晒</td><td>传统炮制工艺</td><td>滋补上品，价格最高</td></tr>
+    </table>
+
+    <!-- 九、经济效益 -->
+    <h2>💰 九、经济效益估算（5亩）</h2>
+
+    <h3>投入成本（首年）</h3>
+    <table>
+        <tr><th>投入项</th><th style="width:35%">金额</th></tr>
+        <tr><td>整地、土壤改良</td><td>¥2,000</td></tr>
+        <tr><td>种茎（150 kg × ¥30）</td><td>¥4,500</td></tr>
+        <tr><td>有机肥、化肥</td><td>¥3,000</td></tr>
+        <tr><td>人工（整地、种植、管理、采收）</td><td>¥8,000</td></tr>
+        <tr><td>病虫害防治</td><td>¥500</td></tr>
+        <tr><td>烘干/加工设备</td><td>¥2,000</td></tr>
+        <tr><td style="font-weight:700;color:#a8e063">合计首年投入</td><td style="font-weight:700;color:#a8e063">¥20,000</td></tr>
+    </table>
+
+    <h3>产出收益（第3年采收）</h3>
+    <table>
+        <tr><th>产出项</th><th>数据</th></tr>
+        <tr><td>鲜品亩产</td><td>800~1,200 kg</td></tr>
+        <tr><td>5亩总产量</td><td>4,000~6,000 kg</td></tr>
+        <tr><td>鲜品售价</td><td>¥15~25/kg</td></tr>
+        <tr><td style="font-weight:700;color:#ffd97d">鲜品总产值</td><td style="font-weight:700;color:#ffd97d">¥60,000~150,000</td></tr>
+        <tr><td>加工成干品（4:1）</td><td>1,000~1,500 kg 干品</td></tr>
+        <tr><td>干品售价</td><td>¥60~120/kg</td></tr>
+        <tr><td style="font-weight:700;color:#ffd97d">干品总产值</td><td style="font-weight:700;color:#ffd97d">¥60,000~180,000</td></tr>
+    </table>
+
+    <h3>净收益对比</h3>
+    <table>
+        <tr><th>路线</th><th>3年总净利</th><th>年均净利/亩</th></tr>
+        <tr><td><span class="tag tag-green">鲜品路线</span></td>
+            <td>¥40,000~130,000</td>
+            <td style="font-weight:700;color:#a8e063">¥13,000~43,000</td></tr>
+        <tr><td><span class="tag tag-yellow">干品路线</span></td>
+            <td>¥40,000~160,000</td>
+            <td style="font-weight:700;color:#ffd97d">¥13,000~53,000</td></tr>
+    </table>
+
+    <div class="warning">📊 以上数据仅供参考，实际受市场价格、品质、管理水平影响较大。优质九制黄精近年行情持续走高</div>
+
+    <!-- 十、三年进度 -->
+    <h2>📆 十、三年种植进度表</h2>
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-time">第1年3月</div>
+            <div class="tl-title">🌱 整地、施基肥、定植根茎</div>
+            <div class="tl-desc">完成林地整理、土壤改良、底肥施入、根茎定植</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第1年5~9月</div>
+            <div class="tl-title">🌿 中耕除草、追肥、灌溉排水</div>
+            <div class="tl-desc">全年除草 3~4 次，适时追肥，保持土壤湿润</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第1年11月</div>
+            <div class="tl-title">❄️ 施基肥、清理枯叶、覆盖保墒</div>
+            <div class="tl-desc">有机肥 1,000 kg/亩，畦面加覆盖物安全越冬</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第2年3月~11月</div>
+            <div class="tl-title">🛠️ 常规管理</div>
+            <div class="tl-desc">除草、追肥（复合肥）、防病虫、灌溉排水</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第3年3月~9月</div>
+            <div class="tl-title">🛠️ 常规管理 + 留种扩繁</div>
+            <div class="tl-desc">精选优质根茎自行育苗，为扩大面积做准备</div>
+        </div>
+        <div class="tl-item" style="border-left:3px solid #ffd97d">
+            <div class="tl-time">第3年10~11月</div>
+            <div class="tl-title" style="color:#ffd97d">🎉 首批采收上市</div>
+            <div class="tl-desc">深挖根茎，初加工后上市销售或自行炮制</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第4年+</div>
+            <div class="tl-title">🌱 扩大面积或继续种植</div>
+            <div class="tl-desc">用自留种茎扩大种植面积，滚动发展</div>
+        </div>
+    </div>
+
+    <!-- 十一、风险控制 -->
+    <h2>🛡️ 十一、降低风险建议</h2>
+    <div class="benefit"><div class="icon">1️⃣</div><div><div class="title">分批种植</div><div class="desc">不要一次性全部种完，先种 1~2 亩试种，掌握技术后再扩大</div></div></div>
+    <div class="benefit"><div class="icon">2️⃣</div><div><div class="title">立体经营</div><div class="desc">黄精 + 土鸡 / 黄精 + 食用菌（羊肚菌/竹荪）综合收益更高，每亩额外增收 ¥3,000~8,000</div></div></div>
+    <div class="benefit"><div class="icon">3️⃣</div><div><div class="title">订单农业</div><div class="desc">优先联系药材收购商或合作社，锁定销售渠道，降低市场风险</div></div></div>
+    <div class="benefit"><div class="icon">4️⃣</div><div><div class="title">留种扩繁</div><div class="desc">采收时精选优质根茎自行育苗，降低次年种苗成本 40%~60%</div></div></div>
+    <div class="benefit"><div class="icon">5️⃣</div><div><div class="title">关注政策</div><div class="desc">部分地区有林下经济补贴，可咨询当地林业局申请扶持资金</div></div></div>
+
+    <!-- 十二、深加工方向 -->
+    <h2>🏭 十二、黄精深加工产品方向</h2>
+    <table>
+        <tr><th style="width:30%">产品</th><th>做法</th><th>市场价值</th></tr>
+        <tr><td>九制黄精</td><td>九蒸九晒传统工艺</td><td>¥150~300/kg（精品）</td></tr>
+        <tr><td>黄精茶</td><td>切片、发酵、烘焙</td><td>¥200~500/kg</td></tr>
+        <tr><td>黄精酒</td><td>黄精+白酒浸泡 3~6个月</td><td>每瓶 ¥80~200</td></tr>
+        <tr><td>黄精丸/糕</td><td>九制黄精打粉+辅料制丸</td><td>¥100~250/kg</td></tr>
+        <tr><td>黄精多糖提取物</td><td>工厂化提取，医药原料</td><td>¥500~1,000/kg</td></tr>
+    </table>
+
+    <hr class="divider">
+    <div style="text-align:center;color:#6a9e3a;font-size:0.8rem;margin-top:20px">
+        🌿 黄精林下种植 — 生态效益与经济效益双赢<br>
+        建议先小规模试种，掌握技术后逐步扩大
+    </div>
+
+    <button class="print-btn" onclick="window.print()">🖨️ 打印方案</button>
+
+</div>
+<script>
+const now = new Date();
+const weeks = ['日','一','二','三','四','五','六'];
+const dateStr = now.getFullYear() + '年' + (now.getMonth()+1) + '月' + now.getDate() + '日 星期' + weeks[now.getDay()];
+document.title = '林地黄精种植实施方案_' + dateStr;
+</script>
+</body>
+</html>

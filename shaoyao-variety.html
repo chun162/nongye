@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2026芍药品种选型分析</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans SC',-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;
+  background:linear-gradient(135deg,#3d2010 0%,#2d1b0e 50%,#1e1208 100%);
+  background-attachment:fixed;
+  color:#e8d5c4;
+  min-height:100vh;
+  padding:60px 20px 40px;
+  line-height:1.75;
+}
+.site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(45,27,14,0.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(196,150,58,0.3);
+  padding:12px 32px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.back-link{color:#e8c97a;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.3s}
+.back-link:hover{color:#c4963a}
+.nav-title{color:#c4704b;font-size:14px;opacity:0.7}
+.sub-nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.sub-nav a{
+  color:#e8a882;text-decoration:none;font-size:12px;
+  padding:4px 12px;border-radius:16px;
+  background:rgba(196,112,75,0.1);
+  transition:all 0.25s;
+}
+.sub-nav a:hover{background:rgba(196,112,75,0.25);color:#f5ddd3}
+.sub-nav a.active{background:rgba(196,150,58,0.25);color:#e8c97a}
+.container{max-width:960px;margin:0 auto}
+.header{
+  text-align:center;padding:40px 30px;
+  background:rgba(255,255,255,0.04);
+  border-radius:16px;margin-bottom:28px;
+  border:1px solid rgba(196,150,58,0.15);
+}
+.header h1{
+  font-size:2rem;font-weight:700;
+  background:linear-gradient(90deg,#e8c97a,#c4704b,#e8a882);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:10px;
+}
+.header .sub{font-size:0.95rem;color:#c4963a;margin-bottom:6px}
+.header .info{font-size:0.82rem;color:#8a6a4a}
+h2{
+  color:#e8c97a;font-size:1.25rem;margin:32px 0 14px;
+  padding-bottom:6px;border-bottom:2px solid rgba(196,150,58,0.2);
+  display:flex;align-items:center;gap:8px;
+}
+h3{color:#e8a882;font-size:1.05rem;margin:20px 0 8px}
+p{margin:8px 0;color:#d4c0b0}
+ul{margin:8px 0 8px 20px}
+li{margin:4px 0;color:#d4c0b0}
+.tag{
+  display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:0.75rem;font-weight:600;margin-right:4px;
+}
+.tag-gold{background:rgba(196,150,58,0.2);color:#e8c97a}
+.tag-red{background:rgba(196,112,75,0.2);color:#e8a882}
+.tag-green{background:rgba(124,140,110,0.2);color:#a8c08a}
+.tag-blue{background:rgba(99,102,241,0.2);color:#a5b4fc}
+.note{
+  background:rgba(196,150,58,0.06);
+  border-left:3px solid #c4963a;
+  border-radius:0 8px 8px 0;
+  padding:12px 18px;margin:14px 0;
+  color:#e8d5c4;font-size:0.9rem;
+}
+.note strong{color:#e8c97a}
+table{
+  width:100%;border-collapse:collapse;margin:14px 0;
+  font-size:0.85rem;background:rgba(255,255,255,0.03);
+  border-radius:10px;overflow:hidden;
+}
+th{
+  background:rgba(196,150,58,0.12);color:#e8c97a;
+  padding:10px 14px;text-align:left;font-weight:600;
+}
+td{
+  padding:9px 14px;border-top:1px solid rgba(255,255,255,0.05);
+  color:#d4c0b0;
+}
+tr:hover td{background:rgba(196,150,58,0.04)}
+.card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(196,150,58,0.1);
+  border-radius:12px;padding:16px 20px;margin:14px 0;
+}
+.benefit{
+  display:flex;align-items:flex-start;gap:10px;
+  margin:10px 0;padding:10px 14px;
+  background:rgba(196,150,58,0.04);
+  border-radius:8px;border-left:3px solid #c4963a;
+}
+.benefit .icon{font-size:1.2rem;flex-shrink:0}
+.benefit .title{font-size:0.9rem;font-weight:600;color:#e8c97a;margin-bottom:2px}
+.benefit .desc{font-size:0.82rem;color:#b8a890}
+.print-btn{
+  position:fixed;bottom:24px;right:24px;z-index:100;
+  background:linear-gradient(135deg,#c4963a,#c4704b);
+  color:#fff;border:none;border-radius:50px;
+  padding:12px 24px;font-size:14px;font-weight:600;
+  cursor:pointer;box-shadow:0 4px 16px rgba(196,112,75,0.4);
+  transition:transform 0.25s;
+}
+.print-btn:hover{transform:scale(1.05)}
+@media(max-width:768px){
+  .container{max-width:100%}
+  table{font-size:0.78rem}
+  th,td{padding:6px 8px}
+  .sub-nav{display:none}
+}
+@media print{
+  body{background:#fff;color:#2d1b0e;padding:20px}
+  .site-nav,.print-btn{display:none}
+  .header{background:#faf6f1}
+  h2{color:#6b3a2a;border-color:#c4704b}
+  h3{color:#c4704b}
+  p,li{color:#2d1b0e}
+  th{background:#f5e8d5;color:#6b3a2a}
+  td{color:#2d1b0e;border-color:#ddd}
+  .note{background:#fdf8f0}
+  .card{background:#faf6f1}
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <a href="index.html" class="back-link">← 返回农业科技官网</a>
+  <span class="nav-title">2026芍药品种选型分析</span>
+  <nav class="sub-nav"><a href="shaoyao.html">管理系统</a><a href="shaoyao-variety.html" class="active">品种选型</a><a href="shaoyao-planning.html">种植规划</a><a href="shaoyao-planning-4yr.html">4年苗方案</a><a href="shaoyao-tourism.html">旅游商业</a><a href="dashboard.html">监控看板</a><a href="knowledge-base.html">知识库</a></nav>
+</header>
+<div class="container">
+  <div class="header">
+    <h1>🌸 2026年芍药品种选型分析</h1>
+    <div class="sub">变色系·粉色系·黄色系·白色系 全品种优缺点对比</div>
+  </div>
+  
+  <h2>一、按用途推荐速查</h2>
+  <table>
+    <tr><th>用途</th><th>推荐品种</th><th>理由</th></tr>
+    <tr><td><span class="tag tag-gold">切花卖花</span></td><td>莎拉、落日珊瑚</td><td>流通量大、网红品种、溢价空间大</td></tr>
+    <tr><td><span class="tag tag-red">观赏庭院</span></td><td>芭茨拉、御前表演</td><td>花大香浓、巨型花径22cm</td></tr>
+    <tr><td><span class="tag tag-green">花海建设</span></td><td>大富贵、粉凌红花</td><td>国产经典、性价比高</td></tr>
+    <tr><td><span class="tag tag-blue">试种新品</span></td><td>鲑鱼雪纺、伊藤系列</td><td>2026赛花会新品、品种稀缺</td></tr>
+    <tr><td><span class="tag tag-gold">性价比</span></td><td>种生粉、莎拉</td><td>价格亲民、技术成熟</td></tr>
+    <tr><td><span class="tag tag-green">北方寒冷区</span></td><td>芭茨拉、种生粉</td><td>耐寒性强、地栽越冬无压力</td></tr>
+  </table>
+
+  <h2>二、核心品种优缺点详解</h2>
+
+  <h3>变色系</h3>
+  <table>
+    <tr><th>品种</th><th>花色</th><th>花型</th><th>花期</th><th>香味</th><th>主要优点</th><th>主要缺点</th></tr>
+    <tr><td>落日珊瑚</td><td>橘红→奶油白</td><td>荷花型半重瓣</td><td>5-8天</td><td>微香</td><td>变色效果最佳，APS金奖</td><td>无香，高温花期短，价高</td></tr>
+    <tr><td>夏威夷珊瑚</td><td>深粉→淡黄</td><td>碗型</td><td>~10天</td><td>轻微药味</td><td>花期较长，夜间合瓣</td><td>有药味，价贵</td></tr>
+    <tr><td>御前表演</td><td>鲜红→水粉</td><td>重瓣巨型</td><td>5-7天</td><td>浓香</td><td>花径达22cm，香气浓郁</td><td>花大易垂头，需防倒伏</td></tr>
+  </table>
+
+  <h3>粉色系</h3>
+  <table>
+    <tr><th>品种</th><th>花色</th><th>花型</th><th>花期</th><th>香味</th><th>主要优点</th><th>主要缺点</th></tr>
+    <tr><td>莎拉</td><td>浅粉+玫红斑纹</td><td>重瓣粉包子</td><td>5-7天</td><td>清香</td><td>全球最流行，适应性强</td><td>过于常见，花瓣遇水易散</td></tr>
+    <tr><td>种生粉</td><td>浅水粉→白</td><td>皇冠型</td><td>5-7天</td><td>淡香</td><td>清雅纯净，耐寒</td><td>耐阴性弱，花型偏小</td></tr>
+  </table>
+
+  <h3>黄色系 · 伊藤芍药</h3>
+  <table>
+    <tr><th>品种</th><th>花色</th><th>花型</th><th>花期</th><th>香味</th><th>主要优点</th><th>主要缺点</th></tr>
+    <tr><td>芭茨拉</td><td>亮黄+红晕</td><td>重瓣超大</td><td>较长</td><td>浓郁柠檬香</td><td>稀缺黄色，可二次开花</td><td>价高，前期生长慢</td></tr>
+  </table>
+
+  <h3>白色系</h3>
+  <table>
+    <tr><th>品种</th><th>花色</th><th>花型</th><th>花期</th><th>香味</th><th>主要优点</th><th>主要缺点</th></tr>
+    <tr><td>奶油碗</td><td>奶油白</td><td>重瓣</td><td>5-7天</td><td>清甜</td><td>质感如蜡，花艺百搭</td><td>白色易显脏，遇雨易烂</td></tr>
+    <tr><td>杨妃出浴</td><td>纯白+玫红点</td><td>重瓣</td><td>5-7天</td><td>清香</td><td>国产经典，文化意境高</td><td>茎秆偏软，花型不规整</td></tr>
+  </table>
+
+  <h2>三、2026年新品种（菏泽赛花会亮相）</h2>
+  <div class="note">
+    <strong>鲑鱼雪纺、科林威尔森、索菲亚女王、维纳斯女神</strong>等共68个品种参展。新品种种苗稀缺，建议小面积试种，不要大面积押注。
+  </div>
+
+  <h2>四、种植建议</h2>
+  <div class="card">
+    <ul>
+      <li>最佳种植期8-10月（秋植），6月可预订种苗</li>
+      <li>地栽优于盆栽，芍药根系发达需深土</li>
+      <li>耐阴性排名：粉玉奴 > 紫凤朝阳 > 团叶红 > 朱砂判 > 大富贵 > 种生粉</li>
+      <li>山东菏泽是核心种苗产区，品质有保障</li>
+      <li>新品种先试种，确认适应性后再扩大规模</li>
+      <li>花茎防倒伏：御前表演等大花品种需设支架</li>
+    </ul>
+  </div>
+
+</div>
+<button class="print-btn" onclick="window.print()">打印 / 导出PDF</button>
+</body>
+</html>

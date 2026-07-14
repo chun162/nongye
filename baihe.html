@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百合种植技术与药用价值</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;
+    background:linear-gradient(135deg,#2d1b4e,#1a0a3a,#0d1b4a);
+    color:#e8dff5;
+    min-height:100vh;padding:80px 20px 20px;line-height:1.75
+}
+.site-nav {
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(26,10,58,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(180,100,255,0.2);
+  padding:14px 32px;
+  display:flex;align-items:center;gap:16px;
+}
+.back-link {
+  color:#c084fc;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  transition:color 0.3s;
+}
+.back-link:hover { color:#e879f9; }
+.nav-title {
+  color:#d8b4fe;
+  font-size:14px;
+  opacity:0.7;
+}
+.container{max-width:920px;margin:0 auto}
+
+.header{
+    text-align:center;padding:35px 25px;
+    background:rgba(255,255,255,0.05);
+    border-radius:16px;margin-bottom:24px;
+    border:1px solid rgba(180,100,255,0.2)
+}
+.header h1{
+    font-size:2.1rem;
+    background:linear-gradient(90deg,#e879f9,#a855f7,#6366f1);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;margin-bottom:8px
+}
+.header .sub{font-size:0.95rem;color:#c084fc;margin-bottom:5px}
+.header .info{font-size:0.82rem;color:#8b6fcd}
+
+h2{
+    color:#e879f9;font-size:1.2rem;margin:28px 0 14px;
+    padding-bottom:6px;border-bottom:2px solid rgba(180,100,255,0.25);
+    display:flex;align-items:center;gap:8px
+}
+h3{color:#d8b4fe;font-size:1rem;margin:18px 0 8px}
+
+table{
+    width:100%;border-collapse:collapse;margin:12px 0;
+    font-size:0.87rem;background:rgba(255,255,255,0.04);
+    border-radius:10px;overflow:hidden
+}
+th{
+    background:rgba(180,100,255,0.15);color:#e879f9;
+    padding:10px 14px;text-align:left;font-weight:600
+}
+td{
+    padding:9px 14px;border-top:1px solid rgba(255,255,255,0.05);
+    color:#d4c8e8
+}
+tr:hover td{background:rgba(180,100,255,0.04)}
+
+.card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(180,100,255,0.12);
+    border-radius:12px;padding:16px 20px;margin:14px 0
+}
+.tag{
+    display:inline-block;padding:3px 10px;
+    border-radius:20px;font-size:0.75rem;font-weight:600;margin-right:4px
+}
+.tag-purple{background:rgba(180,100,255,0.2);color:#d8b4fe}
+.tag-pink{background:rgba(232,121,249,0.2);color:#f0abfc}
+.tag-blue{background:rgba(99,102,241,0.2);color:#a5b4fc}
+.tag-yellow{background:rgba(251,191,36,0.2);color:#fcd34d}
+.tag-green{background:rgba(52,211,153,0.2);color:#6ee7b7}
+.tag-red{background:rgba(248,113,113,0.2);color:#fca5a5}
+
+.section-title{font-size:0.82rem;color:#b388f0;margin-bottom:4px;font-weight:600}
+
+.benefit{
+    display:flex;align-items:flex-start;gap:10px;
+    margin:10px 0;padding:10px 14px;
+    background:rgba(180,100,255,0.05);
+    border-radius:8px;border-left:3px solid #a855f7
+}
+.benefit .icon{font-size:1.3rem;flex-shrink:0}
+.benefit .title{font-size:0.9rem;font-weight:600;color:#e9d5ff;margin-bottom:2px}
+.benefit .desc{font-size:0.82rem;color:#b8a8d0}
+
+.warning{
+    background:rgba(251,191,36,0.07);
+    border:1px solid rgba(251,191,36,0.22);
+    border-radius:10px;padding:14px 18px;margin:12px 0;
+    font-size:0.85rem;color:#fcd34d
+}
+.warning::before{content:'⚠️ '}
+
+.timeline{position:relative;padding-left:32px;margin:14px 0}
+.timeline::before{
+    content:'';position:absolute;left:9px;top:0;bottom:0;
+    width:3px;
+    background:linear-gradient(180deg,#a855f7,#e879f9,#f0abfc,#a855f7)
+}
+.tl-item{
+    position:relative;margin-bottom:14px;padding:10px 14px;
+    background:rgba(255,255,255,0.04);
+    border-radius:8px;border:1px solid rgba(180,100,255,0.1)
+}
+.tl-item::before{
+    content:'';position:absolute;left:-27px;top:14px;
+    width:11px;height:11px;border-radius:50%;
+    background:#a855f7;border:2px solid #1a0a3a
+}
+.tl-time{font-size:0.78rem;color:#b388f0;font-weight:600;margin-bottom:3px}
+.tl-title{font-size:0.9rem;color:#e9d5ff;font-weight:600}
+.tl-desc{font-size:0.82rem;color:#b8a8d0;margin-top:2px}
+
+.phase{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:12px;margin:12px 0
+}
+.phase-card{
+    padding:14px;border-radius:10px;
+    border:1px solid rgba(180,100,255,0.15);
+    background:rgba(255,255,255,0.03)
+}
+.phase-card .label{
+    font-size:0.72rem;color:#b388f0;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px
+}
+.phase-card .value{
+    font-size:0.88rem;color:#e9d5ff;font-weight:600
+}
+
+.process-flow{
+    display:flex;flex-wrap:wrap;gap:6px;
+    align-items:center;margin:10px 0;padding:12px;
+    background:rgba(180,100,255,0.04);
+    border-radius:10px
+}
+.process-step{
+    display:flex;align-items:center;gap:6px;
+    padding:6px 12px;
+    background:rgba(180,100,255,0.1);
+    border-radius:20px;font-size:0.82rem;color:#e9d5ff;
+    border:1px solid rgba(180,100,255,0.2)
+}
+.process-step .arrow{color:#b388f0;font-size:0.9rem}
+
+.divider{border:none;border-top:1px solid rgba(180,100,255,0.1);margin:20px 0}
+
+.print-btn{
+    display:block;margin:24px auto 0;
+    padding:13px 44px;
+    background:linear-gradient(90deg,#a855f7,#6366f1);
+    color:#fff;font-weight:700;font-size:1rem;
+    border:none;border-radius:50px;cursor:pointer;
+    transition:transform .2s,box-shadow .2s
+}
+.print-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(168,85,247,0.35)}
+
+@media(max-width:600px){
+    .header h1{font-size:1.6rem}
+    .phase{grid-template-columns:1fr 1fr}
+}
+@media print{
+    body{background:#fff;color:#1a0a3a}
+    .print-btn{display:none}
+    .header{background:#f5f0ff}
+    th{background:#ede9fe;color:#6b21a8}
+    td{color:#333;border-color:#ccc}
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <a href="index.html" class="back-link">← 返回农业科技官网</a>
+  <span class="nav-title">百合种植技术与药用价值</span>
+  <nav class="sub-nav" style="margin-left:auto;display:flex;gap:8px;">
+    <a href="shaoyao.html" style="color:#c084fc;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(180,100,255,0.1);">芍药</a>
+    <a href="huangjing.html" style="color:#c084fc;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(180,100,255,0.1);">黄精</a>
+    <a href="digital-twin.html" style="color:#c084fc;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(180,100,255,0.1);">数字孪生</a>
+    <a href="dashboard.html" style="color:#c084fc;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(180,100,255,0.1);">监控看板</a>
+    <a href="knowledge-base.html" style="color:#c084fc;text-decoration:none;font-size:12px;padding:4px 12px;border-radius:16px;background:rgba(180,100,255,0.1);">知识库</a>
+  </nav>
+</header>
+<div class="container">
+
+    <!-- 标题 -->
+    <div class="header">
+        <h1>🌸 百合种植技术与药用价值</h1>
+        <div class="sub">食用+药用双用途 · 药食同源 · 高效益经济作物</div>
+        <div class="info">适用规模：5亩连片种植（可按比例调整）</div>
+    </div>
+
+    <!-- 百合概述 -->
+    <div class="card" style="border-left:3px solid #a855f7">
+        <div style="font-size:0.82rem;color:#b388f0;margin-bottom:6px">💡 了解百合</div>
+        <div>百合是百合科百合属多年生草本球根植物，是我国传统药食同源作物。鳞茎可入药、食用，花可观赏。种植面积约 60 万亩，年产值超 80 亿元，主产区为甘肃兰州、湖南龙山、江西万载等地。</div>
+    </div>
+
+    <!-- 一、主要品种 -->
+    <h2>🌷 一、主要栽培品种</h2>
+    <table>
+        <tr><th style="width:22%">品种</th><th>主产区</th><th>特点</th><th>用途</th></tr>
+        <tr>
+            <td><span class="tag tag-purple">龙牙百合</span></td>
+            <td>湖南龙山、江西万载</td>
+            <td>鳞茎大、色泽洁白、纤维少、口感粉糯</td>
+            <td>药用+食用，药典收录品种</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-pink">兰州百合</span></td>
+            <td>甘肃兰州（七里河区）</td>
+            <td>鳞茎肥厚、味甜清香、可直接鲜食</td>
+            <td>食用为主，药用为辅</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-blue">卷丹百合</span></td>
+            <td>全国分布广泛</td>
+            <td>花朵橙红色带紫黑斑点，花期长，抗逆性强</td>
+            <td>药用为主，花可观赏</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-yellow">宜兴百合</span></td>
+            <td>江苏宜兴</td>
+            <td>鳞茎微苦、药效强</td>
+            <td>药用为主</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-green">麝香百合</span></td>
+            <td>南方温暖地区</td>
+            <td>花朵白色、香气浓郁、花大</td>
+            <td>观赏+提取香料</td>
+        </tr>
+    </table>
+
+    <!-- 二、种植环境 -->
+    <h2>🌤️ 二、种植环境要求</h2>
+    <div class="phase">
+        <div class="phase-card">
+            <div class="label">🌡️ 温度</div>
+            <div class="value">15~25°C · 耐寒，地下球根可耐-20°C</div>
+        </div>
+        <div class="phase-card">
+            <div class="label">☀️ 光照</div>
+            <div class="value">充足光照 · 幼苗期喜阴，成株需光</div>
+        </div>
+        <div class="phase-card">
+            <div class="label">🌱 土壤</div>
+            <div class="value">pH 5.5~7.0 · 土层深厚、疏松、排水好</div>
+        </div>
+        <div class="phase-card">
+            <div class="label">💧 水分</div>
+            <div class="value">喜湿润 · 忌积水 · 怕涝</div>
+        </div>
+    </div>
+
+    <div class="warning">🚫 土壤禁忌：盐碱土、黏重土、低洼积水地、连作（需轮作3年以上）</div>
+
+    <!-- 三、繁殖方法 -->
+    <h2>🌱 三、繁殖方法</h2>
+
+    <h3>方法A：种球繁殖（推荐 👍 最常用）</h3>
+    <table>
+        <tr><th style="width:30%">项目</th><th>说明</th></tr>
+        <tr><td>种球来源</td><td>购买脱毒组培种球，或自繁健康种球</td></tr>
+        <tr><td>选球标准</td><td>鳞茎洁白、饱满、无病虫害，直径 ≥ 5 cm</td></tr>
+        <tr><td>种球大小分级</td><td>大球（≥6cm）当年可开花；中球（4~5cm）培养1年；小球（2~3cm）培养2年</td></tr>
+        <tr><td>消毒处理</td><td>多菌灵 500 倍液浸 20 分钟，晾干后种植</td></tr>
+        <tr><td>用种量</td><td>约 300~400 kg/亩（根据球茎大小调整）</td></tr>
+    </table>
+
+    <h3>方法B：鳞片扦插（快速扩繁）</h3>
+    <table>
+        <tr><th style="width:30%">项目</th><th>说明</th></tr>
+        <tr><td>扦插时间</td><td>9~10月（采收后或春季发芽前）</td></tr>
+        <tr><td>鳞片选择</td><td>选取外层肥大饱满的鳞片，每片带少量茎盘</td></tr>
+        <tr><td>基质</td><td>珍珠岩:泥炭 = 1:1，或河沙，湿度 60%</td></tr>
+        <tr><td>扦插深度</td><td>鳞片 2/3 插入基质，间距 3~5 cm</td></tr>
+        <tr><td>培育周期</td><td>15~20天生根，60~90天形成小鳞茎，需再培育 1~2 年</td></tr>
+    </table>
+
+    <h3>方法C：珠芽繁殖（卷丹等品种）</h3>
+    <div class="card">卷丹百合等品种在叶腋处产生珠芽（小人舌），7~8月采收珠芽，沙藏后 9~10月播种，覆土 2~3 cm，次年春季发芽，需培育 2~3 年成球。</div>
+
+    <!-- 四、定植 -->
+    <h2>🌿 四、定植（关键环节）</h2>
+    <table>
+        <tr><th style="width:30%">项目</th><th>参数</th></tr>
+        <tr><td>秋植（推荐）</td><td>9月下旬~11月上旬，鳞茎提前发根，翌春早发芽</td></tr>
+        <tr><td>春植</td><td>3~4月（北方解冻后），适合南方多雨地区</td></tr>
+        <tr><td>株距</td><td>20~25 cm</td></tr>
+        <tr><td>行距</td><td>30~40 cm</td></tr>
+        <tr><td>深度</td><td>球顶覆土 8~12 cm（黏土浅植，沙土深植）</td></tr>
+        <tr><td>密度</td><td>约 8,000~12,000 株/亩</td></tr>
+    </table>
+
+    <div class="card">
+        <div class="section-title">定植步骤</div>
+        <div>① 土壤深翻 25~30 cm，施足基肥</div>
+        <div>② 耙平，做畦宽 1.2~1.5 m，沟宽 30 cm、深 20 cm</div>
+        <div>③ 沟植或穴植，芽眼朝上，轻覆土压实</div>
+        <div>④ 浇透定根水，地膜覆盖保湿（春植推荐）</div>
+    </div>
+
+    <!-- 五、田间管理 -->
+    <h2>📅 五、田间管理</h2>
+
+    <h3>年度管理历</h3>
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-time">2~3月（早春）</div>
+            <div class="tl-title">🌱 施萌芽肥 · 清理地表</div>
+            <div class="tl-desc">尿素 8~10 kg/亩 + 稀薄人粪尿，促进整齐萌芽</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">4~5月（春季）</div>
+            <div class="tl-title">🛠️ 中耕除草 · 追施蕾肥</div>
+            <div class="tl-desc">蕾期追复合肥（NPK各15%）15~20 kg/亩；行间浅中耕</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">6~7月（花期）</div>
+            <div class="tl-title">🌸 除蕾 · 摘心</div>
+            <div class="tl-desc">药用栽培：花蕾现蕾期及时摘除，减少养分消耗；观赏栽培：保留花朵</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">7~8月（膨大期）</div>
+            <div class="tl-title">🍃 叶面追肥 · 保湿灌溉</div>
+            <div class="tl-desc">磷酸二氢钾叶面喷施 2~3 次（0.3%）；干旱时及时灌水，雨季排水</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">9~10月（采收期）</div>
+            <div class="tl-title">🍂 适时采收 · 留种</div>
+            <div class="tl-desc">地上部枯萎后选晴天采挖；精选健康球茎留种储存</div>
+        </div>
+    </div>
+
+    <h3>水肥全程方案</h3>
+    <table>
+        <tr><th>阶段</th><th>施肥方案</th></tr>
+        <tr><td><span class="tag tag-purple">基肥（种植前）</span></td><td>有机肥 2,000~3,000 kg/亩 + 过磷酸钙 50 kg + 硫酸钾 15 kg</td></tr>
+        <tr><td><span class="tag tag-pink">萌芽期（3月）</span></td><td>尿素 8~10 kg/亩，促进整齐出苗</td></tr>
+        <tr><td><span class="tag tag-blue">现蕾期（5月）</span></td><td>复合肥（15-15-15）15~20 kg/亩</td></tr>
+        <tr><td><span class="tag tag-yellow">膨大期（7~8月）</span></td><td>磷酸二氢钾叶喷 0.3%，2~3次</td></tr>
+        <tr><td><span class="tag tag-green">采后养球（10月）</span></td><td>稀薄复合肥，促进养分回流球茎</td></tr>
+    </table>
+
+    <!-- 六、病虫害 -->
+    <h2>🐛 六、病虫害防治</h2>
+    <table>
+        <tr><th style="width:22%">病虫害</th><th>识别特征</th><th>防治措施</th></tr>
+        <tr>
+            <td><span class="tag tag-red">灰霉病</span></td>
+            <td>叶片出现褐色水渍斑，花瓣腐烂</td>
+            <td>发病初喷嘧霉胺或腐霉利；加强通风透光</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-red">立枯病</span></td>
+            <td>幼苗茎基部变褐缢缩，枯死</td>
+            <td>土壤消毒（多菌灵拌土）；拔除病株，石灰氮处理</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-red">根腐病</span></td>
+            <td>鳞茎腐烂、有恶臭，地上部萎蔫</td>
+            <td>控制土壤湿度；用甲霜灵或噁霉灵灌根</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-red">病毒病</span></td>
+            <td>叶片花叶、斑驳、皱缩、植株矮化</td>
+            <td>严格使用脱毒种球；及时防治蚜虫（传毒媒介）；拔除病株</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-red">蚜虫</span></td>
+            <td>聚集嫩叶、花蕾吸食汁液</td>
+            <td>吡虫啉、啶虫脒；黄板诱杀</td>
+        </tr>
+        <tr>
+            <td><span class="tag tag-red">地下害虫</span></td>
+            <td>蛴螬、地老虎咬食球茎和根</td>
+            <td>辛硫磷颗粒 2~3 kg/亩拌土</td>
+        </tr>
+    </table>
+
+    <div class="warning">💊 安全提示：优先使用生物农药（苏云金杆菌、白僵菌）；采收前 20 天停止用药</div>
+
+    <!-- 七、采收加工 -->
+    <h2>🌾 七、采收与加工</h2>
+    <table>
+        <tr><th style="width:30%">项目</th><th>说明</th></tr>
+        <tr><td>采收时间</td><td>种植后第 1~2 年秋季（9~10月），地上部枯萎后 2 周</td></tr>
+        <tr><td>采收标准</td><td>鳞茎充分成熟，直径 ≥ 5 cm，色泽洁白</td></tr>
+        <tr><td>采收方法</td><td>选晴天，挖取鳞茎，抖土，注意不要损伤鳞片</td></tr>
+        <tr><td>亩产量</td><td>800~1,500 kg/亩（鲜品）</td></tr>
+    </table>
+
+    <h3>初加工方法</h3>
+    <div class="process-flow">
+        <div class="process-step">🌾 百合挖出<span class="arrow">→</span></div>
+        <div class="process-step">🧹 剥片、洗净<span class="arrow">→</span></div>
+        <div class="process-step">♨️ 沸水烫煮（3~5分钟）<span class="arrow">→</span></div>
+        <div class="process-step">☀️ 摊晾晒干或烘干<span class="arrow">→</span></div>
+        <div class="process-step">📦 防潮储存</div>
+    </div>
+
+    <h3>食用百合加工（兰州百合）</h3>
+    <div class="card">鲜食百合：剥片 → 清洗 → 速冻/真空包装 → 冷链运输；百合干：鳞片剥开 → 沸水烫 2~3 分钟 → 晒干 3~5 天 → 密封保存。</div>
+
+    <!-- 药用价值 -->
+    <h2>💊 八、药用价值与功效</h2>
+
+    <div class="card" style="border-left:3px solid #a855f7;background:rgba(180,100,255,0.06)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px">
+            <div>
+                <div class="section-title">性味归经</div>
+                <div>• <strong>性：</strong>微寒</div>
+                <div>• <strong>味：</strong>甘、微苦</div>
+                <div>• <strong>归经：</strong>心、肺经</div>
+            </div>
+            <div>
+                <div class="section-title">药典来源</div>
+                <div>百合科植物卷丹、百合或细叶百合的干燥肉质鳞叶。《中国药典》2020年版收录。</div>
+            </div>
+        </div>
+    </div>
+
+    <h3>核心功效</h3>
+    <div class="benefit"><div class="icon">🫁</div><div><div class="title">养阴润肺</div><div class="desc">用于阴虚燥咳、痰中带血、肺热咳嗽，是秋季润肺首选药材</div></div></div>
+    <div class="benefit"><div class="icon">🧠</div><div><div class="title">清心安神</div><div class="desc">用于虚烦惊悸、失眠多梦、精神恍惚，有显著的镇静安神作用</div></div></div>
+    <div class="benefit"><div class="icon">💪</div><div><div class="title">滋补脾胃</div><div class="desc">鲜百合含丰富淀粉和维生素，健脾益胃，适合体虚者食补</div></div></div>
+    <div class="benefit"><div class="icon">✨</div><div><div class="title">美容养颜</div><div class="desc">含维生素C、B族维生素和黏液质，润泽肌肤，淡斑美白</div></div></div>
+
+    <h3>主要化学成分</h3>
+    <table>
+        <tr><th style="width:30%">成分</th><th>含量/作用</th></tr>
+        <tr><td><span class="tag tag-purple">百合多糖</span></td><td>含量 10%~20%，主要活性成分，免疫调节、抗氧化</td></tr>
+        <tr><td><span class="tag tag-pink">皂苷类</span></td><td>镇静安神、止咳祛痰</td></tr>
+        <tr><td><span class="tag tag-blue">秋水仙碱</span></td><td>微毒，适量可镇痛，用于痛风（需炮制减毒）</td></tr>
+        <tr><td><span class="tag tag-yellow">淀粉、蛋白质</span></td><td>鲜百合主要营养，提供能量</td></tr>
+        <tr><td><span class="tag tag-green">维生素、矿物质</span></td><td>维生素C、B族维生素、钾、铁、钙</td></tr>
+    </table>
+
+    <h3>现代药理研究</h3>
+    <table>
+        <tr><th style="width:30%">药理作用</th><th>研究结论</th></tr>
+        <tr><td>镇咳祛痰</td><td>百合煎剂对氨水引起的小鼠咳嗽有显著镇咳作用</td></tr>
+        <tr><td>镇静安神</td><td>百合皂苷延长戊巴比妥钠睡眠时间，减少自主活动</td></tr>
+        <tr><td>免疫调节</td><td>多糖成分显著增强巨噬细胞吞噬功能，提高机体免疫</td></tr>
+        <tr><td>抗抑郁</td><td>改善慢性温和应激小鼠模型的行为学异常，调节神经递质</td></tr>
+        <tr><td>抗氧化</td><td>多酚类化合物清除自由基，延缓细胞衰老</td></tr>
+        <tr><td>降血糖</td><td>百合多糖改善胰岛素抵抗，降低空腹血糖</td></tr>
+    </table>
+
+    <h3>临床应用</h3>
+    <table>
+        <tr><th style="width:30%">证型/症状</th><th>用法</th></tr>
+        <tr><td>肺阴虚燥咳</td><td>百合固金汤：百合 + 生地、熟地、麦冬等</td></tr>
+        <tr><td>虚烦惊悸、失眠</td><td>百合知母汤：百合 + 知母，煎服</td></tr>
+        <tr><td>热病后虚烦</td><td>鲜百合 + 蜂蜜蒸服，或百合粥</td></tr>
+        <tr><td>神经衰弱</td><td>百合 30g + 酸枣仁 15g + 远志 10g，煎服</td></tr>
+        <tr><td>秋季润肺</td><td>百合 + 银耳 + 莲子 + 雪梨，炖汤食疗</td></tr>
+    </table>
+
+    <h3>食疗方推荐</h3>
+    <div class="card">
+        <div class="section-title">🍲 百合粥（养阴润肺）</div>
+        <div>鲜百合 30g、粳米 100g、冰糖适量。百合与米同煮成粥，早晚温热服食。</div>
+    </div>
+    <div class="card">
+        <div class="section-title">🍐 百合银耳雪梨汤（润肺止咳）</div>
+        <div>百合 20g、银耳 1朵、雪梨 1个、枸杞 10g、冰糖适量。炖汤 1 小时，四季适用。</div>
+    </div>
+    <div class="card">
+        <div class="section-title">🍯 蜂蜜蒸百合（虚烦咳嗽）</div>
+        <div>鲜百合 50g、蜂蜜 20g，拌匀蒸熟。每日 2 次，连服 3~5 天。</div>
+    </div>
+
+    <!-- 九、注意事项 -->
+    <h2>⚠️ 九、使用注意</h2>
+    <table>
+        <tr><th style="width:30%">禁忌人群</th><th>说明</th></tr>
+        <tr><td>风寒咳嗽</td><td>外感风寒咳嗽不宜用百合，以免敛邪</td></tr>
+        <tr><td>脾胃虚寒便溏</td><td>百合微寒，脾虚泄泻者慎用或配伍白术、陈皮</td></tr>
+        <tr><td>孕妇</td><td>遵医嘱，不宜大量久服</td></tr>
+        <tr><td>秋水仙碱过敏</td><td>卷丹百合含秋水仙碱，过敏者禁用</td></tr>
+    </table>
+    <div class="warning">💊 用法用量：煎服 10~30 g；食疗用量 15~50 g（鲜品）；外用适量。需炮制的品种请遵医嘱</div>
+
+    <!-- 十、经济效益 -->
+    <h2>💰 十、经济效益估算（5亩）</h2>
+    <table>
+        <tr><th>投入项</th><th style="width:30%">金额</th></tr>
+        <tr><td>整地、基肥</td><td>¥3,000</td></tr>
+        <tr><td>种球（300kg × ¥20）</td><td>¥6,000</td></tr>
+        <tr><td>肥料、农药</td><td>¥4,000</td></tr>
+        <tr><td>人工（种植、管理、采收）</td><td>¥10,000</td></tr>
+        <tr><td>加工、包装</td><td>¥2,000</td></tr>
+        <tr><td style="color:#e879f9;font-weight:700">合计首年投入</td><td style="color:#e879f9;font-weight:700">¥25,000</td></tr>
+    </table>
+    <table style="margin-top:12px">
+        <tr><th>产出项</th><th>数据</th></tr>
+        <tr><td>鲜品亩产</td><td>800~1,500 kg</td></tr>
+        <tr><td>5亩总产量（鲜品）</td><td>4,000~7,500 kg</td></tr>
+        <tr><td>鲜品售价</td><td>¥15~30/kg</td></tr>
+        <tr><td>百合干售价</td><td>¥60~120/kg</td></tr>
+        <tr><td style="color:#fcd34d;font-weight:700">鲜品路线总收益</td><td style="color:#fcd34d;font-weight:700">¥60,000~225,000</td></tr>
+        <tr><td style="color:#fcd34d;font-weight:700">3年累计净利</td><td style="color:#fcd34d;font-weight:700">¥35,000~200,000</td></tr>
+    </table>
+    <div class="warning">📊 百合为多年生作物，种植一次可采收 2~3 年。药用百合需 1~2 年，食用百合品质要求更高</div>
+
+    <!-- 十一、种植进度 -->
+    <h2>📆 十一、三年种植进度</h2>
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-time">第1年9~11月</div>
+            <div class="tl-title">🌱 定植（秋植）</div>
+            <div class="tl-desc">深翻土壤、施足基肥、种球消毒、沟植定植、覆土保湿</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第1年11月~第2年3月</div>
+            <div class="tl-title">❄️ 越冬管理</div>
+            <div class="tl-desc">覆盖稻草或地膜保温，安全越冬</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第2年3~8月</div>
+            <div class="tl-title">🌿 常规管理</div>
+            <div class="tl-desc">萌芽肥→蕾期追肥→除蕾→叶面施肥→灌溉排水</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第2年9~10月</div>
+            <div class="tl-title">🌾 小规模采收（可选）</div>
+            <div class="tl-desc">2年生大球可采收上市；小球继续培育</div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">第3年3~8月</div>
+            <div class="tl-title">🛠️ 继续管理</div>
+            <div class="tl-desc">第2年采收后球茎继续生长，加强水肥管理</div>
+        </div>
+        <div class="tl-item" style="border-left:3px solid #fcd34d">
+            <div class="tl-time">第3年9~10月</div>
+            <div class="tl-title" style="color:#fcd34d">🎉 批量采收上市</div>
+            <div class="tl-desc">选晴天采挖，初加工后分批上市或对接药材收购商</div>
+        </div>
+    </div>
+
+    <hr class="divider">
+    <div style="text-align:center;color:#8b6fcd;font-size:0.8rem;margin-top:20px">
+        🌸 百合 — 药食同源，高效经济作物<br>
+        建议选择龙牙百合或兰州百合品种，优先对接药材市场或食品加工企业销售渠道
+    </div>
+
+    <button class="print-btn" onclick="window.print()">🖨️ 打印方案</button>
+
+</div>
+<script>
+const now=new Date();
+const weeks=['日','一','二','三','四','五','六'];
+document.title='百合种植技术与药用价值_'+now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日';
+</script>
+</body>
+</html>
