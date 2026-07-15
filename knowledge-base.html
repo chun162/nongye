@@ -511,10 +511,10 @@
           <h1 class="kb-hero-title">构建你的智慧知识体系</h1>
           <p class="kb-hero-desc">
             基于 CodeBuddy Agent SDK 构建的个人知识库系统。管理你的知识文档，
-            通过 AI 对话智能检索与利用知识。<br><span style="color:#1E6B5E;font-weight:600;">● 应用运行中: localhost:5173</span>
+            基于 AI Agent 的个人知识库系统。管理你的知识文档，通过 AI 对话智能检索与利用知识。<br><span style="color:#1E6B5E;font-weight:600;">● 在线知识库 · 浏览器内直接使用</span>
           </p>
           <div class="kb-hero-actions">
-            <button class="btn-primary" onclick="launchFullApp()">启动完整应用</button>
+            <a href="#kb-docs" class="btn-primary">浏览知识库</a>
             <a href="index.html" class="btn-secondary">返回官网首页</a>
           </div>
         </div>
@@ -563,7 +563,7 @@
         </div>
       </section>
 
-      <section class="kb-docs">
+      <section class="kb-docs" id="kb-docs">
         <div class="docs-header">
           <div>
             <h2 class="section-title">知识文档</h2>
@@ -594,14 +594,14 @@
 
       <section class="kb-actions">
         <div class="action-card">
-          <h3>启动完整知识库</h3>
-          <p>打开带有 AI 对话、流式响应、工具调用的完整知识库应用。<br><span style="color:#87A878;font-weight:600;">● 应用已在运行中</span></p>
-          <button class="action-btn" onclick="launchFullApp()">启动应用</button>
+          <h3>浏览器内知识库</h3>
+          <p>本页即可直接使用：浏览文档、全文搜索、点击查看详情，无需后端、即开即用。<br><span style="color:#87A878;font-weight:600;">● 在线使用中</span></p>
+          <a href="#kb-docs" class="action-btn">浏览知识库</a>
         </div>
         <div class="action-card secondary">
           <h3>添加新文档</h3>
-          <p>将知识文档放入 knowledge-base 目录，支持 Markdown 格式，自动同步到知识库中。</p>
-          <button class="action-btn" onclick="openKnowledgeDir()">打开知识库目录</button>
+          <p>完整 AI 版（AI 对话 / 文档管理 / 工具调用）需在本地运行：克隆仓库后 <code>cd personal-knowledge-base &amp;&amp; npm run dev</code>，访问 http://localhost:5173 。</p>
+          <button class="action-btn" onclick="openDoc(1)">查看使用指南</button>
         </div>
       </section>
 
@@ -697,7 +697,7 @@
           <div class="empty-state">
             <div class="empty-state-icon">📭</div>
             <h3>暂无文档</h3>
-            <p>使用「启动完整应用」来添加文档，或将 Markdown 文件放入 knowledge-base 目录</p>
+            <p>知识库为空。完整 AI 版可在本地运行后添加文档（访问 http://localhost:5173）。</p>
           </div>`;
         return;
       }
